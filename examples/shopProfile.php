@@ -91,7 +91,9 @@
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-0">Order History</h3>
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#form">
+                <i class="fas fa-plus md-0"></i> ADD NEW ORDER
+                </button>  
                 </div>
                 <div class="col-4 text-right">
                   
@@ -134,8 +136,8 @@
                       </span>
                     </td>
                     <td class="text-right">
-                        <a class="btn btn-sm btn-icon-only " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-eye"></i>View
+                    <a href="bill.php" type="button" class="btn btn-labeled btn-danger">
+                          <span class="btn-label"><i class="fa fa-eye"></i></span> View
                         </a>
                     </td>
                   </tr>
@@ -143,7 +145,7 @@
                     <th scope="row">
                     <div class="media align-items-center">
                         <div class="media-body">
-                          <span class="name mb-0 text-sm">A0012</span>
+                          <span class="name mb-0 text-sm">A0015</span>
                         </div>
                       </div>
                     </th>
@@ -151,95 +153,17 @@
                       <?php echo date(" jS \of F Y ");?>
                     </td>
                     <td class="budget">
-                      2500 LKR
+                      6700 LKR
                     </td>
                     <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-warning"></i>
-                        <span class="status">pending</span>
+                    <span class="badge badge-dot mr-4">
+                        <i class="bg-success"></i>
+                        <span class="status">completed</span>
                       </span>
                     </td>
                     <td class="text-right">
-                        <a class="btn btn-sm btn-icon-only " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-eye"></i>View
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                    <div class="media align-items-center">
-                        <div class="media-body">
-                          <span class="name mb-0 text-sm">A0012</span>
-                        </div>
-                      </div>
-                    </th>
-                    <td class="date">
-                      <?php echo date(" jS \of F Y ");?>
-                    </td>
-                    <td class="budget">
-                      2500 LKR
-                    </td>
-                    <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-warning"></i>
-                        <span class="status">pending</span>
-                      </span>
-                    </td>
-                    <td class="text-right">
-                        <a class="btn btn-sm btn-icon-only " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-eye"></i>View
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                    <div class="media align-items-center">
-                        <div class="media-body">
-                          <span class="name mb-0 text-sm">A0012</span>
-                        </div>
-                      </div>
-                    </th>
-                    <td class="date">
-                      <?php echo date(" jS \of F Y ");?>
-                    </td>
-                    <td class="budget">
-                      2500 LKR
-                    </td>
-                    <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-warning"></i>
-                        <span class="status">pending</span>
-                      </span>
-                    </td>
-                    <td class="text-right">
-                        <a class="btn btn-sm btn-icon-only " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-eye"></i>View
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                    <div class="media align-items-center">
-                        <div class="media-body">
-                          <span class="name mb-0 text-sm">A0012</span>
-                        </div>
-                      </div>
-                    </th>
-                    <td class="date">
-                      <?php echo date(" jS \of F Y ");?>
-                    </td>
-                    <td class="budget">
-                      2500 LKR
-                    </td>
-                    <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-warning"></i>
-                        <span class="status">pending</span>
-                      </span>
-                    </td>
-                    <td class="text-right">
-                        <a class="btn btn-sm btn-icon-only " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-eye"></i>View
+                    <a href="bill.php" type="button" class="btn btn-labeled btn-danger">
+                          <span class="btn-label"><i class="fa fa-eye"></i></span> View
                         </a>
                     </td>
                   </tr>

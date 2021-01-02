@@ -51,7 +51,7 @@
                     <img alt="Image placeholder" src="../assets/img/theme/team-4.jpg">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">Ravindu</span>
+                    <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
                   </div>
                 </div>
               </a>
@@ -90,12 +90,12 @@
             <!-- Card header -->
             <div class="card-header  border-0 ">
               <div class="container">
-  <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#form">
-  <i class="fas fa-plus md-0"></i> ADD PRODUCT
-  </button>  
-</div>
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#form">
+                <i class="fas fa-plus md-0"></i> ADD NEW PAYMENT
+                </button>  
+              </div>
 
-<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header border-bottom-0">
@@ -141,53 +141,56 @@
       </form>
     </div>
   </div>
-</div>
+</div> -->
             </div>
             <!-- Light table -->
             <div class="table-responsive">
               <table class="table align-items-center table-dark table-flush">
                 <thead class="thead-dark white-text pt-5">
                   <tr class="pt-5">
-                    <th scope="col" class="sort" data-sort="name">Product name</th>
-                    <th scope="col" class="sort" data-sort="category">Category</th>
-                    <th scope="col" class="sort" data-sort="price">Unit Price</th>
-                    <th scope="col" data-sort="decs">Description</th>
-                    <th scope="col" data-sort="modify">Product Modyfy</th>
+                    <th scope="col" class="sort" data-sort="name">Invoice Num</th>
+                    <th scope="col" class="sort" data-sort="category">Shop Name</th>
+                    <th scope="col" class="sort" data-sort="price">Ref Name</th>
+                    <th scope="col" data-sort="decs">Total Ammount</th>
+                    <th scope="col" data-sort="modify">Payment Method</th>
+                    <th scope="col" data-sort="modify">Recived Amount</th>
+                    <th scope="col" data-sort="modify">Pending Amount</th>
+                    <th scope="col" data-sort="modify">Print Bill</th>
                   </tr>
                 </thead>
                 <tbody class="list">  
-                <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
                   <tr>
                     <th scope="row">
                       <div class="media align-items-center">
-                        <a href="#" class="avatar rounded-circle mr-3">
-                        
-                          <img alt="Image placeholder" src=" <?php echo $value['image_path'].'/'.$value['product_catogery'].'/'.$value['product_name'].'.png';  ?>">
-                        </a>
                         <div class="media-body">
-                          <span class="name mb-0 text-sm"> <?php echo $value['product_name']; ?></span>
+                          <span class="name mb-0 text-sm"> A001</span>
                         </div>
                       </div>
                     </th>
                     <td class="category">
-                    <?php echo $value['product_catogery']; ?>
+                    Janahitha Traders
+                    </td>
+                    <td class="category">
+                    Pasan Bandara
                     </td>
                     <td class="price">
-                    <?php echo $value['unit_price']; ?> LKR
+                    LKR 5737.60
                     </td>
                     <td>
-                    <?php echo $value['product_des']; ?> 
+                    Cash
                     </td>
                     <td class="">
-                        <button type="button" class="btn btn-labeled btn-success">
-                          <span class="btn-label"><i class="fa fa-pen"></i></span> Update
-                        </button>
-                        <button type="button" class="btn btn-labeled btn-danger">
-                          <span class="btn-label"><i class="fa fa-trash"></i></span> Delete
-                        </button>
+                        LKR 5000.00
+                    </td>
+                    <td class="">
+                        LKR 737.60
+                    </td>
+                    <td class="">
+                    <a href="bill.php" type="button" class="btn btn-labeled btn-danger">
+                          <span class="btn-label"><i class="fa fa-print"></i></span> Print
+                        </a>
                     </td>
                   </tr>
-                  <?php endforeach; ?>
                 </tbody>
               </table>
             </div>
@@ -220,35 +223,6 @@
           </div>
         </div>
       </div>
-      <!-- Footer -->
-      <footer class="footer pt-0">
-        <div class="row align-items-center justify-content-lg-between">
-          <div class="col-lg-6">
-            <div class="copyright text-center  text-lg-left  text-muted">
-              &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
-              </li>
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-              </li>
-              <li class="nav-item">
-                <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </footer>
-    </div>
-  </div>
-  <!-- Argon Scripts -->
   <!-- Core -->
   <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

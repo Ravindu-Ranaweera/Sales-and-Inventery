@@ -49,7 +49,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="examples/upgrade.html">
+              <a class="nav-link" href="payment.php">
                       <i class="ni ni-credit-card"></i>
       
                 <span class="nav-link-text">Payments</span>
