@@ -1,4 +1,8 @@
+<?php
+// session_start();
+?>
 <?php require_once '../controller/shopControllers.php'; ?>
+<?php require_once '../controller/orderControllers.php'; ?>
 <!DOCTYPE html>
 <html>
 
@@ -77,8 +81,12 @@
                   <i class="fa fa-phone mr-2"></i> <?php echo $value['shop_contact']; ?>
                 </div>
                 <div class="mt-3">
-                <a href="#!" class="bg-default btn ">Edit Shop</a>
+                  <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#form">
+                    <i class="fas fa-plus md-0"></i> EDIT SHOP
+                  </button> 
+                
                 </div>
+                
                 
               </div>
             </div>
@@ -91,9 +99,57 @@
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col-8">
-                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#form">
+                <div>
+                  <form action="shopProfile.php" method="post">
+                    <input type="hidden" name="shop_id" value="<?php echo $_GET['shop_id'];  ?>">
+                    <input type="hidden" name="ref_id" value="<?php echo $_SESSION['id'];  ?>">
+                    <input type="hidden" name="date" value=" <?php date_default_timezone_set("Asia/Kolkata"); echo date("Y-m-d");  ?>">
+                    <input type="hidden" name="time" value=" <?php date_default_timezone_set("Asia/Kolkata"); echo date("h:i:s");  ?>">
+                    <button type="submit" name="selectOrder" class="btn btn-dark" data-toggle="modal" data-target="#form">
                 <i class="fas fa-plus md-0"></i> ADD NEW ORDER
-                </button>  
+                </button> 
+                  </form>
+                </div>
+                <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header border-bottom-0">
+                      <h5 class="modal-title" id="exampleModalLabel">Edit Shop</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      </div>
+                      <?php foreach($shop_details as $key=>$value): //var_dump($value); ?>
+                     <?php if($_GET['shop_id'] == $value['shop_id']):?>
+                      <form method="post">
+                      <input type="hidden" name="shopid" class="form-control" value="<?php echo $value['shop_id']; ?>" \>
+                        <div class="modal-body">
+                          <div class="form-group">
+                            <label >Shop Name</label>
+                            <input type="text" name="shopName" class="form-control" value="<?php echo $value['shop_name']; ?>"  aria-describedby="emailHelp" required>
+                          </div>
+                          <div class="form-group">
+                            <label >Owner Name</label>
+                            <input type="text" name="ownerName" class="form-control"  value="<?php echo $value['owner_name']; ?>" aria-describedby="emailHelp"required >
+                          </div>
+                          <div class="form-group">
+                            <label >Contact Number</label>
+                            <input type="num" name="contact" class="form-control" value="<?php echo $value['shop_contact']; ?>"  aria-describedby="emailHelp" required>
+                          </div>
+                          <div class="form-group">
+                            <label >Address Line 1</label>
+                            <input type="text" name="address1" class="form-control" value="<?php echo $value['shop_address']; ?>" aria-describedby="emailHelp" required>
+                          </div>
+                          <div class="modal-footer border-top-0 d-flex justify-content-center">
+                            <button type="submit" name="editShop" class="btn btn-success">Submit</button>
+                          </div>
+                      </form>
+                      <?php endif; ?>
+                      <?php endforeach; ?>
+                    </div>
+                  </div>
+                </div>
+                 
                 </div>
                 <div class="col-4 text-right">
                   
@@ -103,6 +159,7 @@
           </div>
           
           <div class="table-responsive">
+
               <table class="table align-items-center table-dark table-flush">
                 <thead class="thead-dark">
                   <tr>
@@ -115,19 +172,29 @@
                   </tr>
                 </thead>
                 <tbody class=" list">
+                <?php foreach($order_details as $key=>$value): //var_dump($value); ?>
+                <?php if($_GET['shop_id'] == $value['shop_id']):?>
+                <form action="shopProfile.php?shop_id=<?php echo $value['shop_id'];?>" method="post">
+                <input type="hidden" name="id" value="<?php echo $value['order_id'];?>">
+                <input type="hidden" name="shopid" value="<?php echo $value['shop_id'];?>">
                   <tr>
                     <th scope="row">
                       <div class="media align-items-center">
                         <div class="media-body">
-                          <span class="name mb-0 text-sm">A0012</span>
+                          <span class="name mb-0 text-sm">
+                          <?php 
+                            $padded_id = str_pad($value['order_id'], 4, '0',STR_PAD_LEFT);
+                            echo $padded_id;
+                          ?>
+                          </span>
                         </div>
                       </div>
                     </th>
                     <td class="date">
-                      <?php echo date(" jS \of F Y ");?>
+                      <?php echo $value['order_date'];?>
                     </td>
                     <td class="budget">
-                      2500 LKR
+                    <?php echo $value['total_amount'];?> LKR
                     </td>
                     <td>
                       <span class="badge badge-dot mr-4">
@@ -135,38 +202,18 @@
                         <span class="status">pending</span>
                       </span>
                     </td>
-                    <td class="text-right">
-                    <a href="bill.php" type="button" class="btn btn-labeled btn-danger">
-                          <span class="btn-label"><i class="fa fa-eye"></i></span> View
-                        </a>
+                    <td class="">
+                      <button type="submit" name="orderItemDel" class="btn btn-labeled btn-danger">
+                            <span class="btn-label"><i class="fa fa-trash"></i></span> Delete
+                      </button>
+                      <a href="shopOrderView.php?order_id=<?php echo $value['order_id'];?>" type="button" class="btn btn-labeled btn-success">
+                            <span class="btn-label"><i class="fa fa-eye"></i></span> View
+                      </a>
                     </td>
                   </tr>
-                  <tr>
-                    <th scope="row">
-                    <div class="media align-items-center">
-                        <div class="media-body">
-                          <span class="name mb-0 text-sm">A0015</span>
-                        </div>
-                      </div>
-                    </th>
-                    <td class="date">
-                      <?php echo date(" jS \of F Y ");?>
-                    </td>
-                    <td class="budget">
-                      6700 LKR
-                    </td>
-                    <td>
-                    <span class="badge badge-dot mr-4">
-                        <i class="bg-success"></i>
-                        <span class="status">completed</span>
-                      </span>
-                    </td>
-                    <td class="text-right">
-                    <a href="bill.php" type="button" class="btn btn-labeled btn-danger">
-                          <span class="btn-label"><i class="fa fa-eye"></i></span> View
-                        </a>
-                    </td>
-                  </tr>
+                  </form>
+                  <?php endif; ?>
+            <?php endforeach; ?>
                 </tbody>
               </table>
             </div>

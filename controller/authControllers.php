@@ -104,7 +104,7 @@ if (isset($_POST['signin-btn'])){
 	if(count($errors)== 0){
 		if (password_verify($password, $user['user_pw'])){
 			
-			$_SESSION['id']= $user['id'];
+			$_SESSION['id']= $user['user_id'];
 			$_SESSION['username']= $user['user_name'];
 			$_SESSION['email']= $user['user_email'];
 			$_SESSION['usertype']= $user['user_type'];

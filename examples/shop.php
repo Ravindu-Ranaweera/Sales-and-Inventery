@@ -1,4 +1,5 @@
 <?php require_once '../controller/shopControllers.php'; ?>
+<?php require_once '../controller/orderControllers.php'; ?>
 <!DOCTYPE html>
 <html>
 
@@ -87,14 +88,69 @@
         <div class=" col ">
           <div class="card">
             <div class="card-header bg-transparent">
-              <h3 class="mb-0">Shop List</h3>
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#form">
+                  <i class="fas fa-plus md-0"></i> ADD NEW SHOP
+                </button> 
+                <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header border-bottom-0">
+                      <h5 class="modal-title" id="exampleModalLabel">Add New Shop</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      </div>
+                      <form method="post">
+                        <div class="modal-body">
+                          <div class="form-group">
+                            <label >Shop Name</label>
+                            <input type="text" name="shopName" class="form-control"  aria-describedby="emailHelp" required>
+                          </div>
+                          <div class="form-group">
+                            <label >Owner Name</label>
+                            <input type="text" name="ownerName" class="form-control"  aria-describedby="emailHelp"required >
+                          </div>
+                          <div class="form-group">
+                            <label >Contact Number</label>
+                            <input type="num" name="contact" class="form-control"  aria-describedby="emailHelp" required>
+                          </div>
+                          <div class="form-group">
+                            <label >Address Line 1</label>
+                            <input type="text" name="address1" class="form-control"  aria-describedby="emailHelp" required>
+                          </div>
+                          <div class="form-group">
+                            <label >Address Line 2</label>
+                            <input type="text" name="address2" class="form-control" aria-describedby="emailHelp" >
+                          </div>
+                          <div class="form-group">
+                            <label >City</label>
+                            <input type="text" name="city" class="form-control"  aria-describedby="emailHelp" required>
+                          </div>
+                          
+                          
+                        
+                          <div class="modal-footer border-top-0 d-flex justify-content-center">
+                            <button type="submit" name="addShop" class="btn btn-success">Submit</button>
+                          </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+
+              
             </div>
             <div class="card-body">
               <div class="row ph-5">
                 <?php foreach($shop_details as $key=>$value): //var_dump($value); ?>
+                <?php if($value['shop_isdelete']=='0'): //var_dump($value); ?>
+                
+                
                 <div class=" col-xl-3 col-md-6">
                     <div class="bg-dark card card-stats">
                       <!-- Card body -->
+                      <form action="shop.php" method="post">
+                      <input type="hidden" name="shopid" value="<?php echo $value['shop_id']; ?>">
                       <div class="card-body">
                         <div class="row">
                           <div class="col">
@@ -112,11 +168,17 @@
                           <br>
                           <span class="text-nowrap"><i class="fa fa-phone"></i> <?php echo $value['shop_contact']; ?></span>
                         </p>
+                        <button type="submit" name="shopDel" class="btn btn-sm btn-danger">
+                            <span class="btn-label"><i class="fa fa-trash"></i></span> Delete
+                       </button>
+                      </div>
+                      </form>
                     </div>
-                    
-                </div>
+                
             </div>
+            <?php endif; ?>
             <?php endforeach; ?>
+            
           </div>
           </div>
         </div>
