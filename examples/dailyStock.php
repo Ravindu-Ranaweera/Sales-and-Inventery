@@ -1,4 +1,5 @@
 <?php require_once '../controller/productControllers.php'; ?>
+<?php require_once '../controller/stockControllers.php'; ?>
 <!DOCTYPE html>
 <html>
 
@@ -91,11 +92,52 @@
             <!-- Card header -->
             <div class="card-header  border-0 ">
               <div class="container">
-                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#form">
-                <i class="fas fa-plus md-0"></i> ADD DAILY STOCK
-                </button>  
+                  <form action="" method="post">
+                    <input type="hidden" name="date" value=" <?php date_default_timezone_set("Asia/Kolkata"); echo date("Y-m-d");  ?>">
+                    <button type="submit" name="selectLoad" class="btn btn-dark" data-toggle="modal" data-target="#form">
+                      <i class="fas fa-plus md-0"></i> ADD TODAY LOADINGS
+                    </button> 
+                  </form>
+
+                  
               </div>
+              
             </div>
+            <div class="card-body">
+            <div class="table-responsive">
+              <table class="table align-items-center table-dark table-flush">
+                <thead class="thead-dark white-text pt-5">
+                  <tr class="pt-5">
+                    <th scope="col" class="sort" data-sort="name">Date</th>
+                    <th scope="col" data-sort="modify">Unload States</th>
+                  </tr>
+                </thead>
+                <tbody class="list">  
+                <?php foreach($loading_details as $key=>$value): //var_dump($value); ?>
+                  <tr>
+                    
+                    <td class="category">
+                    <?php echo $value['load_date']; ?>
+                    </td>
+                    <td class="">
+                    <?php if($value['is_unload'] == '0'): ?>
+                        <a  href="dailyunloading.php?load_id=<?php echo $value['load_id']; ?>" class="btn btn-labeled btn-success">
+                          <span class="btn-label"><i class="fa fa-pen"></i></span> Unload
+                        </a>
+                        <?php else: ?>
+                          <span class="badge badge-dot mr-4">
+                        <i class="bg-success"></i>
+                        <span class="status">Unloaded</span>
+                      </span>
+                        <?php endif; ?>
+                    </td>
+                  </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            </div>
+            </div>
+            
           </div>
         </div>
       </div>

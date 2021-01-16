@@ -1,7 +1,8 @@
-<?php require_once '../controller/shopControllers.php'; ?>
-<?php require_once '../controller/orderControllers.php'; ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<?php require_once '../controller/productControllers.php'; ?>
+<?php require_once '../controller/stockControllers.php'; ?>
+<!DOCTYPE >
+<html >
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -20,30 +21,16 @@
 	
 	<link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
     
-    <!-- BEGIN FOXYCART FILES -->
-    <script src="https://css-tricks.foxycart.com/files/foxycart_includes.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" href="https://css-tricks.foxycart.com/files/foxybox.css" type="text/css" media="screen" charset="utf-8" />
-    <link rel="stylesheet" href="https://css-tricks.foxycart.com/themes/standard/theme.foxybox.css" type="text/css" media="screen" charset="utf-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- END FOXYCART FILES -->
 
     
-	<script type='text/javascript' src='../assets/js/order.js'></script>
 </head>
 
 <body>
 
 
-<script>
-$(document).ready(function(){
-  $("#hide").click(function(){
-    $(".odd").hide();
-  });
-  $("#show").click(function(){
-    $(".odd").show();
-  });
-});
-</script>
+
 
 <!-- Sidenav -->
 <?php include('sidebar.php'); ?>
@@ -105,20 +92,18 @@ $(document).ready(function(){
     
         <!-- <h1>Multi-product Quantity-based Order Form</h1> -->
         <form action="" method="post">
-    
-    	<table id="order-table">
+        <div class="table-responsive">
+        <table class="table align-items-center table-dark table-flush">
     	    <tr>
     	         <th>Product Name</th> 
     	         <th>Quantity</th>
-    	         <th>X</th>
     	         <th>Unit Price</th>
-    	         <th>=</th>
-    	         <th style="text-align: right; padding-right: 30px;">Totals</th> 
+    	         
     	    </tr>
             <tr>
               <td>
-                  <button id="hide">Hide</button>
-                  <button id="show">Show</button>
+                  <button type="button" id="hid">Hide</button>
+                  <button type="button" id="sho">Show</button>
                   Accessories
                   
               </td>
@@ -126,13 +111,11 @@ $(document).ready(function(){
             
             <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
             <?php if($value['product_catogery'] == "Accessories"): //var_dump($value); ?>
-            <tr class="odd">
-            <td class="product-title"><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class="num-pallets"><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="num-pallets-input" id="sparkle-num-pallets" value="0"></input></td>
-                <td class="times">X</td>
-                <td class="price-per-pallet">LKR<span><?php echo $value['unit_price']; ?> </span></td>
-                <td class="equals">=</td>
-                <td class="row-total"><input type="text" class="row-total-input" id="sparkle-row-total" disabled="disabled"></input></td>
+            <tr class="o">
+                <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                <td class=""><input type="text" name="<?php echo 'bill-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                
             </tr>
                   <?php endif; ?>
                   <?php endforeach; ?>
@@ -147,12 +130,10 @@ $(document).ready(function(){
             <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
             <?php if($value['product_catogery'] == "Gang Switches"): //var_dump($value); ?>
             <tr class="odd">
-            <td class="product-title"><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class="num-pallets"><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="num-pallets-input" id="sparkle-num-pallets" value="0"></input></td>
-                <td class="times">X</td>
-                <td class="price-per-pallet">LKR<span><?php echo $value['unit_price']; ?> </span></td>
-                <td class="equals">=</td>
-                <td class="row-total"><input type="text" class="row-total-input" id="sparkle-row-total" disabled="disabled"></input></td>
+            <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                
             </tr>
                   <?php endif; ?>
                   <?php endforeach; ?>
@@ -167,12 +148,10 @@ $(document).ready(function(){
             <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
             <?php if($value['product_catogery'] == "Other switches"): //var_dump($value); ?>
             <tr class="odd">
-            <td class="product-title"><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class="num-pallets"><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="num-pallets-input" id="sparkle-num-pallets" value="0"></input></td>
-                <td class="times">X</td>
-                <td class="price-per-pallet">LKR<span><?php echo $value['unit_price']; ?> </span></td>
-                <td class="equals">=</td>
-                <td class="row-total"><input type="text" class="row-total-input" id="sparkle-row-total" disabled="disabled"></input></td>
+            <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                
             </tr>
                   <?php endif; ?>
                   <?php endforeach; ?>
@@ -187,12 +166,10 @@ $(document).ready(function(){
             <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
             <?php if($value['product_catogery'] == "Sockets"): //var_dump($value); ?>
             <tr class="odd">
-            <td class="product-title"><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class="num-pallets"><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="num-pallets-input" id="sparkle-num-pallets" value="0"></input></td>
-                <td class="times">X</td>
-                <td class="price-per-pallet">LKR<span><?php echo $value['unit_price']; ?> </span></td>
-                <td class="equals">=</td>
-                <td class="row-total"><input type="text" class="row-total-input" id="sparkle-row-total" disabled="disabled"></input></td>
+            <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                
             </tr>
                   <?php endif; ?>
                   <?php endforeach; ?>
@@ -207,68 +184,27 @@ $(document).ready(function(){
             <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
             <?php if($value['product_catogery'] == "Switch Gears"): //var_dump($value); ?>
             <tr class="odd">
-                <td class="product-title"><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class="num-pallets"><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="num-pallets-input" id="sparkle-num-pallets" value="0"></input></td>
-                <td class="times">X</td>
-                <td class="price-per-pallet">LKR<span><?php echo $value['unit_price']; ?> </span></td>
-                <td class="equals">=</td>
-                <td class="row-total"><input type="text" class="row-total-input" id="sparkle-row-total" disabled="disabled"></input></td>
+            <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                
             </tr>
                   <?php endif; ?>
                   <?php endforeach; ?>
             </tr>
-            <tr>
-                <td colspan="6" style="text-align: right;">
-                    Product SUBTOTAL: 
-                    <input type="text" name="subTotal" class="total-box" value="" id="product-subtotal" readonly="readonly"></input>
-                </td>
-            </tr>
+            
             <tr>
             <td colspan="6" style="text-align: right;">
-            <input type="submit" name="submitOrderItem" />
+            <input type="submit" name="submitStockItem" />
                 </td>
             
             </tr>
     	</table>
+        </div>
+    	
     	</form>
-    	<!-- <table id="shipping-table">
-    	
-    	 <tr>
-    	     <th>Total Qty.</th>
-    	     <th>X</th>
-    	     <th>Shipping Rate</th>
-    	     <th>=</th>
-    	     <th style="text-align: right;">Shipping Total</th>
-    	 </tr>
-    	 
-    	 <tr>
-    	     <td id="total-pallets"><input id="total-pallets-input" value="0" type="text" disabled="disabled"></input></td>
-    	     <td>X</td>
-    	     <td id="shipping-rate">10.00</td>
-    	     <td>=</td>
-    	     <td style="text-align: right;"><input type="text" class="total-box" value="$0" id="shipping-subtotal" disabled="disabled"></input></td>
-    	 </tr>
-    	
-    	</table> -->
-    	
-    	<!-- <div class="clear"></div>
-    	
-        <div style="text-align: right;">
-            <span>ORDER TOTAL: </span> 
-            <input type="text" class="total-box" value="$0" id="order-total" disabled="disabled"></input>
-            
-            <br />
-            
-            <form class="foxycart" action="https://css-tricks.foxycart.com/cart" method="post" accept-charset="utf-8" id="foxycart-order-form">
-                
-                <input type="hidden" name="name" value="Multi Product Order" />
-                <input type="hidden" id="fc-price" name="price" value="0" />
+      
 
-                <input type="submit" value="Submit Order" class="submit" />
-                
-            </form>
-        </div> -->
-        
     </div>
               
             </div>
@@ -277,6 +213,17 @@ $(document).ready(function(){
       </div>
       </div>
 
+      <script>
+        $(document).ready(function(){
+          $("#hid").click(function(){
+            $(".o").hide();
+          });
+          $("#sho").click(function(){
+            $(".o").show();
+          });
+        });
+      </script>
+        
   <!-- Core -->
   <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

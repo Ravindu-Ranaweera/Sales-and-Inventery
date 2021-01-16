@@ -104,39 +104,87 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form>
+      <form action="" method="post" enctype="multipart/form-data">
         <div class="modal-body">
           <div class="form-group">
-            <label for="email1">Product Name</label>
-            <input type="email" class="form-control" id="email1" aria-describedby="emailHelp" placeholder="Enter email">
+            <label >Product Name</label>
+            <input type="text" class="form-control" name="product_name" aria-describedby="emailHelp" >
           </div>
           <div class="form-group">
             <label for="exampleFormControlSelect1">Product Category</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option>Select</option>
-              <option>Gang Switches</option>
-              <option>Sockets</option>
-              <option>Switch Gears</option>
-              <option>Accessories</option>
-              <option>Other switches</option>
+            <select class="form-control" name="cat">
+              <option value="" >Select</option>
+              <option value="Gang Switches">Gang Switches</option>
+              <option value="Sockets">Sockets</option>
+              <option value="Switch Gears">Switch Gears</option>
+              <option value="Accessories">Accessories</option>
+              <option value="Other switches">Other switches</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="password1">Unit Price</label>
-            <input type="password" class="form-control" id="password1" placeholder="Password">
+            <label >Unit Selling Price</label>
+            <input type="text" class="form-control" name="price" >
           </div>
           <div class="form-group">
-            <label for="password1">Description</label>
-            <input type="password" class="form-control" id="password2" placeholder="Confirm Password">
+            <label >Description</label>
+            <input type="text" class="form-control" name="desc" >
           </div>
           <div class="form-group">
-            <label class="form-label" for="customFile">Product Image</label>
-            <input type="file" class="form-control" id="customFile" />
+            <label >Product Image</label>
+            <input type="file" class="form-control" name="file" />
           </div>
         </div>
         
         <div class="modal-footer border-top-0 d-flex justify-content-center">
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" name ="addProduct" class="btn btn-success">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="formedit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="" method="post" enctype="multipart/form-data">
+        <div class="modal-body">
+          <div class="form-group">
+            <label >Product Name</label>
+            <input type="text" class="form-control" name="product_name" aria-describedby="emailHelp" >
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Product Category</label>
+            <select class="form-control" name="cat">
+              <option value="" >Select</option>
+              <option value="Gang Switches">Gang Switches</option>
+              <option value="Sockets">Sockets</option>
+              <option value="Switch Gears">Switch Gears</option>
+              <option value="Accessories">Accessories</option>
+              <option value="Other switches">Other switches</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label >Unit Selling Price</label>
+            <input type="text" class="form-control" name="price" >
+          </div>
+          <div class="form-group">
+            <label >Description</label>
+            <input type="text" class="form-control" name="desc" >
+          </div>
+          <div class="form-group">
+            <label >Product Image</label>
+            <input type="file" class="form-control" name="file" />
+          </div>
+        </div>
+        
+        <div class="modal-footer border-top-0 d-flex justify-content-center">
+          <button type="submit" name ="addProduct" class="btn btn-success">Submit</button>
         </div>
       </form>
     </div>
@@ -150,13 +198,15 @@
                   <tr class="pt-5">
                     <th scope="col" class="sort" data-sort="name">Product name</th>
                     <th scope="col" class="sort" data-sort="category">Category</th>
-                    <th scope="col" class="sort" data-sort="price">Unit Price</th>
+                    <th scope="col" class="sort" data-sort="price">Bill Unit Price</th>
+                    <th scope="col" class="sort" data-sort="price">Sell Unit Price</th>
                     <th scope="col" data-sort="decs">Description</th>
                     <th scope="col" data-sort="modify">Product Modyfy</th>
                   </tr>
                 </thead>
                 <tbody class="list">  
                 <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
+                <form action="" method="post">
                   <tr>
                     <th scope="row">
                       <div class="media align-items-center">
@@ -173,79 +223,31 @@
                     <?php echo $value['product_catogery']; ?>
                     </td>
                     <td class="price">
-                    <?php echo $value['unit_price']; ?> LKR
+                    <?php echo $value['bill_unit_price']; ?> LKR
+                    </td>
+                    <td class="price">
+                    <?php echo $value['sell_unit_price']; ?> LKR
                     </td>
                     <td>
                     <?php echo $value['product_des']; ?> 
                     </td>
                     <td class="">
-                        <button type="button" class="btn btn-labeled btn-success">
-                          <span class="btn-label"><i class="fa fa-pen"></i></span> Update
+                        <button type="button" class="btn btn-labeled btn-success" data-toggle="modal" data-target="#formedit">
+                          <span class="btn-label"><i class="fa fa-pen"></i></span>
                         </button>
-                        <button type="button" class="btn btn-labeled btn-danger">
-                          <span class="btn-label"><i class="fa fa-trash"></i></span> Delete
+                        <button type="submi" name="delProduct" class="btn btn-labeled btn-danger">
+                          <span class="btn-label"><i class="fa fa-trash"></i></span>
                         </button>
                     </td>
                   </tr>
+                  </form>
                   <?php endforeach; ?>
                 </tbody>
               </table>
             </div>
-            <!-- Card footer -->
-            <div class="card-footer py-4">
-              <nav aria-label="...">
-                <ul class="pagination justify-content-end mb-0">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">
-                      <i class="fas fa-angle-left"></i>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                  </li>
-                  <li class="page-item active">
-                    <a class="page-link" href="#">1</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">
-                      <i class="fas fa-angle-right"></i>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
           </div>
         </div>
       </div>
-      <!-- Footer -->
-      <footer class="footer pt-0">
-        <div class="row align-items-center justify-content-lg-between">
-          <div class="col-lg-6">
-            <div class="copyright text-center  text-lg-left  text-muted">
-              &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
-              </li>
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-              </li>
-              <li class="nav-item">
-                <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </footer>
     </div>
   </div>
   <!-- Argon Scripts -->

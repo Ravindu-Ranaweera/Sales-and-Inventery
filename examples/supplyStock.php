@@ -1,4 +1,6 @@
-<?php require_once '../controller/stockControllers.php'; ?>
+<?php 
+session_start();
+require_once '../controller/stockControllers.php'; ?>
 <!DOCTYPE html>
 <html>
 
@@ -95,6 +97,7 @@
   </button>  
 </div>
 
+
 <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -128,7 +131,7 @@
           
           </div>
         <div class="modal-footer border-top-0 d-flex justify-content-center">
-          <button type="submit" name="addStock" class="btn btn-success">Submit</button>
+          <button type="submit" name="addStock" class="btn btn-success">Add Stock Items</button>
         </div>
       </form>
     </div>
@@ -177,9 +180,6 @@
                     <?php echo $value['special_note']; ?> 
                     </td>
                     <td class="">
-                        <button type="button" class="btn btn-labeled btn-secondary">
-                           Set Stock
-                        </button>
                         <button type="button" class="btn btn-labeled btn-success">
                           <span class="btn-label"><i class="fa fa-eye"></i></span>
                         </button>
