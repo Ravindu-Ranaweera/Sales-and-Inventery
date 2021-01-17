@@ -86,16 +86,13 @@
     <div class="container-fluid mt--6">
       <div class="row">
         <div class="col">
-          <div class="card bg-default shadow">
+          <div class="card  shadow">
             <!-- Card header -->
             <div class="card-header  border-0 ">
               <div class="container">
-  <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#form">
-  <i class="fas fa-plus md-0"></i> ADD PRODUCT
-  </button>  
-</div>
+              <section class="mb-5">
 
-<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header border-bottom-0">
@@ -143,54 +140,63 @@
   </div>
 </div>
 
+              <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
+              <?php if($value['product_id']== $_GET['product_id']): //var_dump($value); ?>
+                                <div class="row">
+                                  <div class="col-md-6 mb-4 mb-md-0">
 
-            </div>
-            <!-- Light table -->
-            <div class="table-responsive">
-              <table class="table align-items-center table-dark table-flush">
-                <thead class="thead-dark white-text pt-5">
-                  <tr class="pt-5">
-                    <th scope="col" class="sort" data-sort="name">Product name</th>
-                    <th scope="col" class="sort" data-sort="category">Category</th>
-                    <th scope="col" class="sort" data-sort="price">Bill Unit Price</th>
-                    <th scope="col" class="sort" data-sort="price">Sell Unit Price</th>
-                    <th scope="col" data-sort="modify">Product Modyfy</th>
-                  </tr>
-                </thead>
-                <tbody class="list">  
-                <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
-                <form action="" method="post">
-                  <tr>
-                    <th scope="row">
-                      <div class="media align-items-center">
-                        <a href="#" class="avatar rounded-circle mr-3">
-                        
-                          <img alt="Image placeholder" src=" <?php echo $value['image_path'].'/'.$value['product_catogery'].'/'.$value['product_name'].'.png';  ?>">
-                        </a>
-                        <div class="media-body">
-                          <span class="name mb-0 text-sm"> <?php echo $value['product_name']; ?></span>
-                        </div>
-                      </div>
-                    </th>
-                    <td class="category">
-                    <?php echo $value['product_catogery']; ?>
-                    </td>
-                    <td class="price">
-                    <?php echo $value['bill_unit_price']; ?> LKR
-                    </td>
-                    <td class="price">
-                    <?php echo $value['sell_unit_price']; ?> LKR
-                    </td>
-                    <td class="">
-                        <a href="productView.php?product_id=<?php echo $value['product_id']; ?>" class="btn btn-labeled btn-success" >
-                          <span class="btn-label"><i class="fa fa-pen"></i></span>View
-                        </a>
-                    </td>
-                  </tr>
-                  </form>
-                  <?php endforeach; ?>
-                </tbody>
-              </table>
+                                    <div id="mdb-lightbox-ui"></div>
+
+                                    <div class="mdb-lightbox">
+
+                                      <div class="row product-gallery mx-1">
+
+                                        <div class="col-12 mb-0">
+                                          <figure class="view overlay rounded z-depth-1 main-img">
+                                            
+                                              <img src=" <?php echo $value['image_path'].'/'.$value['product_catogery'].'/'.$value['product_name'].'.png';  ?>"
+                                                class="img-fluid z-depth-1">
+                                            
+                                          </figure>
+                                          
+                                        </div>
+                                      </div>
+
+                                    </div>
+
+                                  </div>
+                                  <div class="col-md-6">
+
+                                    <h2><strong><?php echo $value['product_name']; ?></strong></h2>
+                                    <p class="pt-1"><?php echo $value['product_des']; ?>.</p>
+                                    <div class="table-responsive">
+                                      <table class="table table-sm table-borderless mb-0">
+                                        <tbody>
+                                          <tr>
+                                            <th class="pl-0 w-25" scope="row"><strong>Category</strong></th>
+                                            <td><?php echo $value['product_catogery']; ?></td>
+                                          </tr>
+                                          <tr>
+                                            <th class="pl-0 w-25" scope="row"><strong>Billing Unit Price</strong></th>
+                                            <td><?php echo $value['bill_unit_price']; ?> LKR</td>
+                                          </tr>
+                                          <tr>
+                                            <th class="pl-0 w-25" scope="row"><strong>Selling Unit Price</strong></th>
+                                            <td> <?php echo $value['sell_unit_price']; ?> LKR</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                    <hr>
+                                    <button type="button" class="btn btn-primary btn-md mr-1 mb-2" data-toggle="modal" data-target="#form">Update</button>
+                                    <button type="button" class="btn btn-danger btn-md mr-1 mb-2">Delete</button>
+                                  </div>
+                                </div>
+                                <?php endif; ?>
+                                <?php endforeach; ?>
+                  </section>
+ 
+              </div>
             </div>
           </div>
         </div>
@@ -199,6 +205,14 @@
   </div>
   <!-- Argon Scripts -->
   <!-- Core -->
+  <script>
+  $(document).ready(function () {
+  // MDB Lightbox Init
+  $(function () {
+    $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+  });
+});
+  </script>
   <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/js-cookie/js.cookie.js"></script>
