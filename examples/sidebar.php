@@ -17,37 +17,49 @@
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
+            <?php if ($_SESSION['usertype'] == '1'):  ?>
             <li class="nav-item">
               <a class="nav-link" href="register.php">
                 <i class="ni ni-circle-08 text-pink"></i>
                 <span class="nav-link-text">Register Employee </span>
               </a>
             </li>
+            <?php endif; ?>
+            <?php if ($_SESSION['usertype'] == '1' || ($_SESSION['usertype'] == '3')):  ?>
             <li class="nav-item">
               <a class="nav-link" href="shop.php">
                 <i class="ni ni-shop text-orange"></i>
                 <span class="nav-link-text">Shops</span>
               </a>
             </li>
-            
+            <?php endif; ?>
+
             <li class="nav-item">
               <a class="nav-link" href="tables.php">
                 <i class="ni ni-box-2 text-yellow"></i>
                 <span class="nav-link-text">Product</span>
               </a>
             </li>
+
+            <?php if ($_SESSION['usertype'] == '1' || ($_SESSION['usertype'] == '2')):  ?>
             <li class="nav-item">
               <a class="nav-link" href="stock.php">
                 <i class="ni ni-bag-17 text-red"></i>
                 <span class="nav-link-text">Stock</span>
               </a>
             </li>
+            <?php endif; ?>
+
+            <?php if ($_SESSION['usertype'] == '1'):  ?>
             <li class="nav-item">
               <a class="nav-link" href="report.php">
               <i class="ni ni-books text-defaul"></i>
                 <span class="nav-link-text">Report</span>
               </a>
             </li>
+            <?php endif; ?>
+
+            <?php if ($_SESSION['usertype'] == '1' || ($_SESSION['usertype'] == '3')):  ?>
             <li class="nav-item">
               <a class="nav-link" href="payment.php">
                       <i class="ni ni-credit-card"></i>
@@ -55,6 +67,7 @@
                 <span class="nav-link-text">Payments</span>
               </a>
             </li>
+            <?php endif; ?>
           </ul>
           <!-- Divider -->
         </div>

@@ -1,4 +1,9 @@
 <?php require_once '../controller/productControllers.php'; ?>
+<?php
+if (!isset($_SESSION['id'])) {
+  session_start();
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -25,41 +30,7 @@
   <!-- Main content -->
   <div class="main-content" id="panel">
     <!-- Topnav -->
-    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
-      <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Search form -->
-          <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
-            <div class="form-group mb-0">
-              <div class="input-group input-group-alternative input-group-merge">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-search"></i></span>
-                </div>
-                <input class="form-control" placeholder="Search" type="text">
-              </div>
-            </div>
-            <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </form>
-          <!-- Navbar links -->
-          <ul class="navbar-nav align-items-center  ml-auto ">
-            <li class="nav-item dropdown">
-              <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <div class="media align-items-center">
-                  <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="../assets/img/theme/team-4.jpg">
-                  </span>
-                  <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">Ravindu</span>
-                  </div>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <?php include('topnav.php'); ?>
     <!-- Header -->
     <!-- Header -->
     <div class="header bg-primary pb-6">
@@ -96,35 +67,40 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header border-bottom-0">
-        <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Product Details</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <form action="" method="post" enctype="multipart/form-data">
+      <input type="hidden" class="form-control" name="product_id" value="<?php echo $_GET['product_id']; ?>" >
+      <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
+      <?php if($value['product_id']== $_GET['product_id']): //var_dump($value); ?>
+
         <div class="modal-body">
           <div class="form-group">
             <label >Product Name</label>
-            <input type="text" class="form-control" name="product_name" aria-describedby="emailHelp" >
+            <input type="text" class="form-control" name="product_name" value="<?php echo $value['product_name']; ?>" >
+            
           </div>
           <div class="form-group">
             <label for="exampleFormControlSelect1">Product Category</label>
-            <select class="form-control" name="cat">
+            <select class="form-control" name="cat" ?>>
               <option value="" >Select</option>
-              <option value="Gang Switches">Gang Switches</option>
-              <option value="Sockets">Sockets</option>
-              <option value="Switch Gears">Switch Gears</option>
-              <option value="Accessories">Accessories</option>
-              <option value="Other switches">Other switches</option>
+              <option value="Gang Switches" <?php if ($value['product_catogery'] == 'Gang Switches' ) echo ' selected="selected"'; ?> >Gang Switches</option>
+              <option value="Sockets"  <?php if ($value['product_catogery'] == 'Sockets' ) echo ' selected="selected"'; ?>>Sockets</option>
+              <option value="Switch Gears"  <?php if ($value['product_catogery'] == 'Accessories' ) echo ' selected="Switch Gears"'; ?>>Switch Gears</option>
+              <option value="Accessories"  <?php if ($value['product_catogery'] == 'Accessories' ) echo ' selected="selected"'; ?>>Accessories</option>
+              <option value="Other switches"  <?php if ($value['product_catogery'] == 'Other switches' ) echo ' selected="selected"'; ?>>Other switches</option>
             </select>
           </div>
           <div class="form-group">
             <label >Unit Selling Price</label>
-            <input type="text" class="form-control" name="price" >
+            <input type="text" class="form-control" name="price" value="<?php echo $value['sell_unit_price']; ?>">
           </div>
           <div class="form-group">
             <label >Description</label>
-            <input type="text" class="form-control" name="desc" >
+            <input type="text" class="form-control" name="desc" value="<?php echo $value['product_des']; ?>">
           </div>
           <div class="form-group">
             <label >Product Image</label>
@@ -133,15 +109,18 @@
         </div>
         
         <div class="modal-footer border-top-0 d-flex justify-content-center">
-          <button type="submit" name ="addProduct" class="btn btn-success">Submit</button>
+          <button type="submit" name ="editProduct" class="btn btn-success">Submit</button>
         </div>
+        <?php endif; ?>
+        <?php endforeach; ?>
       </form>
     </div>
   </div>
 </div>
-
+            <form action="" method="post">
               <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
               <?php if($value['product_id']== $_GET['product_id']): //var_dump($value); ?>
+                <input type="hidden" class="form-control" name="product_id" value="<?php echo $_GET['product_id']; ?>" >
                                 <div class="row">
                                   <div class="col-md-6 mb-4 mb-md-0">
 
@@ -154,7 +133,7 @@
                                         <div class="col-12 mb-0">
                                           <figure class="view overlay rounded z-depth-1 main-img">
                                             
-                                              <img src=" <?php echo $value['image_path'].'/'.$value['product_catogery'].'/'.$value['product_name'].'.png';  ?>"
+                                              <img src="<?php echo $value['image_path'];  ?>"
                                                 class="img-fluid z-depth-1">
                                             
                                           </figure>
@@ -189,11 +168,12 @@
                                     </div>
                                     <hr>
                                     <button type="button" class="btn btn-primary btn-md mr-1 mb-2" data-toggle="modal" data-target="#form">Update</button>
-                                    <button type="button" class="btn btn-danger btn-md mr-1 mb-2">Delete</button>
+                                    <button type="submit" name="productDel" class="btn btn-danger btn-md mr-1 mb-2">Delete</button>
                                   </div>
                                 </div>
                                 <?php endif; ?>
                                 <?php endforeach; ?>
+                                </form>
                   </section>
  
               </div>

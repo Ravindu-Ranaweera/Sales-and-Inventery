@@ -1,5 +1,7 @@
 <?php
-// session_start();
+if (!isset($_SESSION['id'])) {
+  session_start();
+}
 ?>
 <?php require_once '../controller/shopControllers.php'; ?>
 <?php require_once '../controller/orderControllers.php'; ?>

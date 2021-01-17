@@ -55,14 +55,21 @@ if (isset($_POST['addProduct'])){
         if ($fileerror === 0) {
             if ($filesize < 1000000) {
                 $fileNewName = $product_name.".".$fileActualExt;
-                $path = __DIR__.'/../assets/img/product/'.$fileNewName;
+                $path = __DIR__.'/../assets/img/product/'.$category.'/'.$fileNewName;
                 // echo __DIR__.'../assets/img/product';
                 // exit();
-                if (file_exists(__DIR__.'/../assets/img/product/'.$fileNewName)) {
-                    unlink(__DIR__.'/../assets/img/product/'.$fileNewName);
+                if (file_exists(__DIR__.'/../assets/img/product/'.$category.'/'.$fileNewName)) {
+                    unlink(__DIR__.'/../assets/img/product/'.$category.'/'.$fileNewName);
                     
                 }
                     move_uploaded_file($filetmp_name, $path);
+                    $imgP = '../assets/img/product/'.$category.'/'.$fileNewName;
+                    $query = "INSERT INTO products (product_id, product_name , 	product_catogery, 	sell_unit_price,	product_des , image_path ) 
+                    VALUES ( NULL,'{$product_name}', '{$category}', '{$price}', '{$dsc}','{$imgP}')";
+            
+                    // echo $query;
+                    // exit;
+                      $result = mysqli_query($conn, $query);
                    
 
             }else{
@@ -83,67 +90,100 @@ if (isset($_POST['addProduct'])){
 //add invoice
 
 if (isset($_POST['editProduct'])){
-    var_dump($_POST);
-    exit;
+    // var_dump($_POST);
+    // exit;
     
 
     $product_name = $_POST['product_name'];
+    $product_id = $_POST['product_id'];
     $category = $_POST['cat'];
     $price = $_POST['price'];
     $dsc = $_POST['desc'];
 
-    $query = "INSERT INTO products (product_id, product_name , 	product_catogery, 	sell_unit_price,	product_des , image_path ) 
-        VALUES ( NULL,'{$product_name}', '{$category}', '{$price}', '{$dsc}','../assets/img/product')";
+    $query = "UPDATE products SET product_name ='{$product_name}' , product_catogery ='{$category}', sell_unit_price='{$price}',	product_des='{$dsc} '
+        WHERE product_id = '{$product_id}'";
 
         // echo $query;
         // exit;
           $result = mysqli_query($conn, $query);
 
-    $file = $_FILES['file'];
-            // print_r($file);
-            // exit();
-        
-    $filename = $_FILES['file']['name'];
-    $filetmp_name = $_FILES['file']['tmp_name'];
-            // echo  $filetmp_name;
-            // exit();
-    $filesize = $_FILES['file']['size'];
-    $fileerror = $_FILES['file']['error'];
-    $filetype = $_FILES['file']['type'];
-        
-    $fileExt = explode('.', $filename);
-    $fileActualExt = strtolower(end($fileExt));
-            // echo $fileActualExt;
-    $allowed = array('jpg', 'jpeg', 'png' );
-        
-    if (in_array($fileActualExt, $allowed)) {
-        if ($fileerror === 0) {
-            if ($filesize < 1000000) {
-                $fileNewName = $product_name.".".$fileActualExt;
-                $path = __DIR__.'/../assets/img/product/'.$fileNewName;
-                // echo __DIR__.'../assets/img/product';
+    if ($_FILES['file'] != "") {
+        $file = $_FILES['file'];
+        // print_r($file);
+        // exit();
+    
+        $filename = $_FILES['file']['name'];
+        $filetmp_name = $_FILES['file']['tmp_name'];
+                // echo  $filetmp_name;
                 // exit();
-                if (file_exists(__DIR__.'/../assets/img/product/'.$fileNewName)) {
-                    unlink(__DIR__.'/../assets/img/product/'.$fileNewName);
-                    
-                }
-                    move_uploaded_file($filetmp_name, $path);
+        $filesize = $_FILES['file']['size'];
+        $fileerror = $_FILES['file']['error'];
+        $filetype = $_FILES['file']['type'];
+            
+        $fileExt = explode('.', $filename);
+        $fileActualExt = strtolower(end($fileExt));
+                // echo $fileActualExt;
+        $allowed = array('jpg', 'jpeg', 'png' );
+            
+        if (in_array($fileActualExt, $allowed)) {
+            if ($fileerror === 0) {
+                if ($filesize < 1000000) {
+                    $fileNewName = $product_name.".".$fileActualExt;
+                    $path = __DIR__.'/../assets/img/product/'.$fileNewName;
+                    // echo __DIR__.'../assets/img/product';
+                    // exit();
                    
+                    $path = __DIR__.'/../assets/img/product/'.$category.'/'.$fileNewName;
+                    // echo __DIR__.'../assets/img/product';
+                    // exit();
+                    if (file_exists(__DIR__.'/../assets/img/product/'.$category.'/'.$fileNewName)) {
+                        unlink(__DIR__.'/../assets/img/product/'.$category.'/'.$fileNewName);
+                        
+                    }
+                        move_uploaded_file($filetmp_name, $path);
+                        $imgP = '../assets/img/product/'.$category.'/'.$fileNewName;
 
+                        $query = "UPDATE products SET image_path='{$imgP}' WHERE product_id = '{$product_id}'";
+                
+                        // echo $query;
+                        // exit;
+                          $result = mysqli_query($conn, $query);
+
+                }else{
+                    echo "noo";
+                }
+            
             }else{
-                echo "noo";
+                echo "Your file too big";
             }
-        
         }else{
-            echo "Your file too big";
+                echo "There was an error";
         }
-    }else{
-            echo "There was an error";
     }
+
+    
       
         
-        header('location: tables.php');
+        header('location: productView.php?product_id='.$product_id);
   
     
 
+}
+
+if (isset($_POST['productDel'])){
+    // var_dump($_POST);
+    // exit;
+
+    $rowId = $_POST['product_id'];
+
+    $query = "UPDATE products SET is_delete= '1' WHERE product_id ={$rowId}";
+    // echo $query;
+    // exit;
+    $result = mysqli_query($conn, $query);
+
+    if($result) {   
+        
+        header('location: tables.php');
+    }
+    
 }
