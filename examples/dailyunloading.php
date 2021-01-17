@@ -92,9 +92,9 @@ if (!isset($_SESSION['id'])) {
             ?>
             <tr>
               <td>
-                  <button type="button" class="btn btn-primary btn-sm" id="hid">-</button>
-                  <button type="button" class="btn btn-primary btn-sm" id="sho">+</button>
-                    Accessories
+              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideAccessories"><strong>-</strong></button>
+                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showAccessories"><strong>+</strong></button>
+                          <strong>Accessories</strong>  
                   
               </td>
             </tr>
@@ -102,7 +102,7 @@ if (!isset($_SESSION['id'])) {
             <?php foreach($product_details as $key=>$value): //var_dump($row); exit; ?>
             <?php foreach($row as $key1=>$value1): //var_dump($value); ?>
             <?php if($value['product_catogery'] == "Accessories" && ($value['product_id']== $value1['product_id'])): //var_dump($value); ?>
-            <tr class="o">
+            <tr class="Accessories">
                 <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
                 <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value1['load_qty']; ?>"></input></td>
                 
@@ -113,9 +113,9 @@ if (!isset($_SESSION['id'])) {
 
             <tr>
               <td>
-                  <button type="button" class="btn btn-primary btn-sm" id="hid">-</button>
-                  <button type="button" class="btn btn-primary btn-sm" id="sho">+</button>
-                  Gang Switches
+              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideGangSwitches"><strong>-</strong></button>
+                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showGangSwitches"><strong>+</strong></button>
+                            <strong>Gang Switches</strong>
                   
               </td>
             </tr>
@@ -123,7 +123,7 @@ if (!isset($_SESSION['id'])) {
             <?php foreach($product_details as $key=>$value): //var_dump($row); exit; ?>
             <?php foreach($row as $key1=>$value1): //var_dump($value); ?>
             <?php if($value['product_catogery'] == "Gang Switches" && ($value['product_id']== $value1['product_id'])): //var_dump($value); ?>
-            <tr class="o">
+              <tr class="GangSwitches">
                 <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
                 <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value1['load_qty']; ?>"></input></td>
                 
@@ -134,9 +134,9 @@ if (!isset($_SESSION['id'])) {
 
             <tr>
               <td>
-                  <button type="button" class="btn btn-primary btn-sm" id="hid">-</button>
-                  <button type="button" class="btn btn-primary btn-sm" id="sho">+</button>
-                  Other switches
+              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideOtherswitches"><strong>-</strong></button>
+                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showOtherswitches"><strong>+</strong></button>
+                          <strong>Other switches</strong>
                   
               </td>
             </tr>
@@ -144,7 +144,7 @@ if (!isset($_SESSION['id'])) {
             <?php foreach($product_details as $key=>$value): //var_dump($row); exit; ?>
             <?php foreach($row as $key1=>$value1): //var_dump($value); ?>
             <?php if($value['product_catogery'] == "Other switches" && ($value['product_id']== $value1['product_id'])): //var_dump($value); ?>
-            <tr class="o">
+              <tr class="Otherswitches">
                 <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
                 <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value1['load_qty']; ?>"></input></td>
                 
@@ -155,9 +155,9 @@ if (!isset($_SESSION['id'])) {
 
             <tr>
               <td>
-                  <button type="button" class="btn btn-primary btn-sm" id="hid">-</button>
-                  <button type="button" class="btn btn-primary btn-sm" id="sho">+</button>
-                  Sockets
+              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideSockets"><strong>-</strong></button>
+                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showSockets"><strong>+</strong></button>
+                            <strong>Sockets</strong>
                   
               </td>
             </tr>
@@ -165,7 +165,7 @@ if (!isset($_SESSION['id'])) {
             <?php foreach($product_details as $key=>$value): //var_dump($row); exit; ?>
             <?php foreach($row as $key1=>$value1): //var_dump($value); ?>
             <?php if($value['product_catogery'] == "Sockets" && ($value['product_id']== $value1['product_id'])): //var_dump($value); ?>
-            <tr class="o">
+              <tr class="Sockets">
                 <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
                 <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value1['load_qty']; ?>"></input></td>
                 
@@ -176,9 +176,9 @@ if (!isset($_SESSION['id'])) {
 
             <tr>
               <td>
-                  <button type="button" class="btn btn-primary btn-sm" id="hid">-</button>
-                  <button type="button" class="btn btn-primary btn-sm" id="sho">+</button>
-                  Switch Gears
+              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideSwitchGears"><strong>-</strong></button>
+                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showSwitchGears"><strong>+</strong></button>
+                            <strong>Switch Gears</strong>
                   
               </td>
             </tr>
@@ -186,7 +186,7 @@ if (!isset($_SESSION['id'])) {
             <?php foreach($product_details as $key=>$value): //var_dump($row); exit; ?>
             <?php foreach($row as $key1=>$value1): //var_dump($value); ?>
             <?php if($value['product_catogery'] == "Switch Gears" && ($value['product_id']== $value1['product_id'])): //var_dump($value); ?>
-            <tr class="o">
+              <tr class="SwitchGears">
                 <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
                 <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value1['load_qty']; ?>"></input></td>
                 
@@ -217,15 +217,51 @@ if (!isset($_SESSION['id'])) {
       </div>
 
       <script>
-        $(document).ready(function(){
-          $("#hid").click(function(){
-            $(".o").hide();
-          });
-          $("#sho").click(function(){
-            $(".o").show();
-          });
-        });
-      </script>
+$(document).ready(function(){
+  $("#hideAccessories").click(function(){
+    $(".Accessories").hide();
+  });
+  $("#showAccessories").click(function(){
+    $(".Accessories").show();
+  });
+});
+
+$(document).ready(function(){
+  $("#hideGangSwitches").click(function(){
+    $(".GangSwitches").hide();
+  });
+  $("#showGangSwitches").click(function(){
+    $(".GangSwitches").show();
+  });
+});
+
+$(document).ready(function(){
+  $("#hideOtherswitches").click(function(){
+    $(".Otherswitches").hide();
+  });
+  $("#showOtherswitches").click(function(){
+    $(".Otherswitches").show();
+  });
+});
+
+$(document).ready(function(){
+  $("#hideSockets").click(function(){
+    $(".Sockets").hide();
+  });
+  $("#showSockets").click(function(){
+    $(".Sockets").show();
+  });
+});
+
+$(document).ready(function(){
+  $("#hideSwitchGears").click(function(){
+    $(".SwitchGears").hide();
+  });
+  $("#showSwitchGears").click(function(){
+    $(".SwitchGears").show();
+  });
+});
+</script>
         
   <!-- Core -->
   <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>

@@ -1,4 +1,5 @@
 <?php require_once '../controller/shopControllers.php'; ?>
+<?php require_once '../controller/returnControllers.php'; ?>
 <?php
 if (!isset($_SESSION['id'])) {
   session_start();
@@ -122,7 +123,7 @@ $(document).ready(function(){
         <div class=" col ">
           <div class="card">
             <div class="card-header bg-transparent">
-              <h3 class="mb-0">Stock Manage</h3>
+              <h3 class="mb-0">Return Product Item Manage</h3>
             </div>
             <div class="card-body">
 
@@ -268,7 +269,8 @@ $(document).ready(function(){
                         <td></td>
                         <td></td>
                       <td >
-                      <input type="submit" name="submitOrderItem"  class="btn btn-success"/>
+                      <input type="hidden" name="order_id"  class="btn btn-success" value="<?php echo  $_GET['order_id'] ; ?>"/>
+                      <input type="submit" name="submitReturnItem"  class="btn btn-success"/>
                           </td>
                       
                       </tr>

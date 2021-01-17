@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION['id'])) {
+  session_start();
+}
 require '../config/db.php';
 
 // Read shop data
@@ -62,8 +65,6 @@ if (isset($_POST['submitOrderItem'])){
    $order_id = $row['order_id'];
    $shop_id = $row['shop_id'];
 
-
-
     
     foreach ($_POST as $key => $value) {
         $count++;
@@ -73,9 +74,16 @@ if (isset($_POST['submitOrderItem'])){
         
         if ($count==2) {
             if ($value != "") {
-                $query = "INSERT INTO order_item (id,order_id, product_id , qty) 
-                VALUES ( NULL,'{$order_id}', '{$product_id}', '{$value}')";
-                
+                $sql = "SELECT * FROM products WHERE product_id= '{$product_id}' LIMIT 1";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_assoc($result);
+
+                $profit = ($row['sell_unit_price'] - $row['bill_unit_price']) * $value;
+
+                $query = "INSERT INTO order_item (id,order_id, product_id , qty, profit ) 
+                VALUES ( NULL,'{$order_id}', '{$product_id}', '{$value}', '{$profit}')";
+                // echo $query;
+                // exit;
                 $result = mysqli_query($conn, $query);
                 $count=0;
             }else{
@@ -86,8 +94,7 @@ if (isset($_POST['submitOrderItem'])){
     }
 
     $sql = "UPDATE place_order SET total_amount ={$num} WHERE order_id={$order_id}";
-    // echo $sql;
-    // exit;
+    
    $result = mysqli_query($conn, $sql);
     if($result) {   
         

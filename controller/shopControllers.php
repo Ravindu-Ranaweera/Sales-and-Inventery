@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (!isset($_SESSION['id'])) {
+  session_start();
+}
+
 require '../config/db.php';
 
 // Read shop data

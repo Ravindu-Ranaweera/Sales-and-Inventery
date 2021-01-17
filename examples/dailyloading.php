@@ -85,16 +85,16 @@ if (!isset($_SESSION['id'])) {
     	    </tr>
             <tr>
               <td>
-                  <button type="button" class="btn btn-primary btn-sm" id="hid">-</button>
-                  <button type="button" class="btn btn-primary btn-sm" id="sho">+</button>
-                    Accessories
+              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideAccessories"><strong>-</strong></button>
+                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showAccessories"><strong>+</strong></button>
+                          <strong>Accessories</strong> 
                   
               </td>
             </tr>
             
             <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
             <?php if($value['product_catogery'] == "Accessories"): //var_dump($value); ?>
-            <tr class="o">
+              <tr class="Accessories">
                 <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
                 <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
                 <!-- <td class=""><input type="text" name="<?php echo 'bill-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td> -->
@@ -104,15 +104,15 @@ if (!isset($_SESSION['id'])) {
                   <?php endforeach; ?>
             <tr>
               <td>
-                  <button id="hide">Hide</button>
-                  <button id="show">Show</button>
-                  Gang Switches
+              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideGangSwitches"><strong>-</strong></button>
+                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showGangSwitches"><strong>+</strong></button>
+                            <strong>Gang Switches</strong>
               </td>
             </tr>
             
             <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
             <?php if($value['product_catogery'] == "Gang Switches"): //var_dump($value); ?>
-            <tr class="odd">
+              <tr class="GangSwitches">
             <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
                 <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
                 <!-- <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td> -->
@@ -123,14 +123,14 @@ if (!isset($_SESSION['id'])) {
 
             <tr>
             <td>
-                <button id="hide">Hide</button>
-                <button id="show">Show</button> 
-                Other switches
+            <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideOtherswitches"><strong>-</strong></button>
+                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showOtherswitches"><strong>+</strong></button>
+                          <strong>Other switches</strong>
             </td>
             </tr>
             <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
             <?php if($value['product_catogery'] == "Other switches"): //var_dump($value); ?>
-            <tr class="odd">
+              <tr class="Otherswitches">
             <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
                 <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
                 <!-- <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td> -->
@@ -141,14 +141,15 @@ if (!isset($_SESSION['id'])) {
             
             <tr>
               <td>
-                  <button id="hide">Hide</button>
-                  <button id="show">Show</button>
-                  Sockets
+              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideSockets"><strong>-</strong></button>
+                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showSockets"><strong>+</strong></button>
+                            <strong>Sockets</strong>
+                  
               </td>
             </tr>
             <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
             <?php if($value['product_catogery'] == "Sockets"): //var_dump($value); ?>
-            <tr class="odd">
+              <tr class="Sockets">
             <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
                 <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
                 <!-- <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td> -->
@@ -159,14 +160,14 @@ if (!isset($_SESSION['id'])) {
             
             <tr>
               <td>
-                  <button id="hide">Hide</button>
-                  <button id="show">Show</button>
-                  Switch Gears
+              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideSwitchGears"><strong>-</strong></button>
+                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showSwitchGears"><strong>+</strong></button>
+                            <strong>Switch Gears</strong>
               </td>
             </tr>
             <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
             <?php if($value['product_catogery'] == "Switch Gears"): //var_dump($value); ?>
-            <tr class="odd">
+              <tr class="SwitchGears">
             <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
                 <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
                 <!-- <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td> -->
@@ -197,15 +198,51 @@ if (!isset($_SESSION['id'])) {
       </div>
 
       <script>
-        $(document).ready(function(){
-          $("#hid").click(function(){
-            $(".o").hide();
-          });
-          $("#sho").click(function(){
-            $(".o").show();
-          });
-        });
-      </script>
+$(document).ready(function(){
+  $("#hideAccessories").click(function(){
+    $(".Accessories").hide();
+  });
+  $("#showAccessories").click(function(){
+    $(".Accessories").show();
+  });
+});
+
+$(document).ready(function(){
+  $("#hideGangSwitches").click(function(){
+    $(".GangSwitches").hide();
+  });
+  $("#showGangSwitches").click(function(){
+    $(".GangSwitches").show();
+  });
+});
+
+$(document).ready(function(){
+  $("#hideOtherswitches").click(function(){
+    $(".Otherswitches").hide();
+  });
+  $("#showOtherswitches").click(function(){
+    $(".Otherswitches").show();
+  });
+});
+
+$(document).ready(function(){
+  $("#hideSockets").click(function(){
+    $(".Sockets").hide();
+  });
+  $("#showSockets").click(function(){
+    $(".Sockets").show();
+  });
+});
+
+$(document).ready(function(){
+  $("#hideSwitchGears").click(function(){
+    $(".SwitchGears").hide();
+  });
+  $("#showSwitchGears").click(function(){
+    $(".SwitchGears").show();
+  });
+});
+</script>
         
   <!-- Core -->
   <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>

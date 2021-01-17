@@ -83,9 +83,11 @@ if (!isset($_SESSION['id'])) {
                   <i class="fa fa-phone mr-2"></i> <?php echo $value['shop_contact']; ?>
                 </div>
                 <div class="mt-3">
+                <?php if ($_SESSION['usertype'] == '1'):  ?>
                   <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#form">
                     <i class="fas fa-plus md-0"></i> EDIT SHOP
                   </button> 
+                  <?php endif;  ?>
                 
                 </div>
                 
@@ -166,9 +168,9 @@ if (!isset($_SESSION['id'])) {
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col" class="sort" data-sort="name">Order id</th>
+                    <th scope="col" class="sort" data-sort="name">Sales Ref</th>
                     <th scope="col" class="sort" data-sort="date">Order Date</th>
                     <th scope="col" class="sort" data-sort="budget">Order Value</th>
-                    <th scope="col" class="sort" data-sort="status">Payment </th>
                     <th scope="col" class="sort" data-sort="view">View Order</th>
                     <th scope="col"></th>
                   </tr>
@@ -195,20 +197,27 @@ if (!isset($_SESSION['id'])) {
                     <td class="date">
                       <?php echo $value['order_date'];?>
                     </td>
+                    <td class="date">
+                      <?php 
+                      $sql = "SELECT * FROM user_login WHERE user_id= '{$value['ref_id']}' ";
+                      $result = mysqli_query($conn,$sql);
+                      $row = mysqli_fetch_assoc($result);
+                      echo $row['user_name'];?>
+                    </td>
                     <td class="budget">
                     <?php echo $value['total_amount'];?> LKR
                     </td>
-                    <td>
+                    <!-- <td>
                       <span class="badge badge-dot mr-4">
                         <i class="bg-warning"></i>
                         <span class="status">pending</span>
                       </span>
-                    </td>
+                    </td> -->
                     <td class="">
                       <button type="submit" name="orderItemDel" class="btn btn-labeled btn-danger">
                             <span class="btn-label"><i class="fa fa-trash"></i></span> Delete
                       </button>
-                      <a href="shopOrderView.php?order_id=<?php echo $value['order_id'];?>" type="button" class="btn btn-labeled btn-success">
+                      <a href="shopOrderView.php?order_id=<?php echo $value['order_id'];?>&shop_id=<?php echo $_GET['shop_id'];  ?>" type="button" class="btn btn-labeled btn-success">
                             <span class="btn-label"><i class="fa fa-eye"></i></span> View
                       </a>
                     </td>

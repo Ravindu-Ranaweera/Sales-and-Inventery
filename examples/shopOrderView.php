@@ -1,4 +1,5 @@
 <?php require_once '../controller/productControllers.php'; ?>
+<?php require_once '../controller/returnControllers.php'; ?>
 <?php
 if (!isset($_SESSION['id'])) {
   session_start();
@@ -39,7 +40,7 @@ if (!isset($_SESSION['id'])) {
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Product</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">View Order</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
@@ -63,8 +64,16 @@ if (!isset($_SESSION['id'])) {
             <div class="card-header  border-0 ">
               <div class="container">
 
-              <h3 class="mb-0">Ordered Item List</h3> 
-</div>
+              <form action="" method="post">
+                    <input type="hidden" name="order_id" value="<?php echo $_GET['order_id'];  ?>">
+                    <input type="hidden" name="shop_id" value="<?php echo $_GET['shop_id'];  ?>">
+                    <input type="hidden" name="date" value=" <?php date_default_timezone_set("Asia/Kolkata"); echo date("Y-m-d");  ?>">
+                    <button type="submit" name="selectReturn" class="btn btn-dark" data-toggle="modal" data-target="#form">
+                <i class="fas fa-plus md-0"></i> ADD Return Item
+                </button> 
+                  </form>
+              <h2 class="m-1 ">Ordered Item List</h2> 
+    </div>
 
             </div>
 
@@ -112,7 +121,7 @@ else {
                       <div class="media align-items-center">
                         <a href="#" class="avatar rounded-circle mr-3">
                         
-                          <img alt="Image placeholder" src=" <?php echo $value2['image_path'].'/'.$value2['product_catogery'].'/'.$value2['product_name'].'.png';  ?>">
+                          <img alt="Image placeholder" src=" <?php echo $value2['image_path']; ?>">
                         </a>
                         <div class="media-body">
                           <span class="name mb-0 text-sm"> <?php echo $value2['product_name']; ?></span>
@@ -123,27 +132,87 @@ else {
                     <?php echo $value2['product_catogery']; ?>
                     </td>
                     <td class="price">
-                    <?php echo $value2['unit_price']; ?> LKR
+                    <?php echo $value2['sell_unit_price']; ?> LKR
                     </td>
                     <td>
                     <?php echo $value['qty']; ?> 
                     </td>
                     <td>
-                    <?php $sub = $value['qty'] *$value2['unit_price']; echo $sub; ?> LKR
+                    <?php $sub = $value['qty'] *$value2['sell_unit_price']; echo $sub; ?> LKR
                     </td>
-                    <!-- <td class="">
-                        <button type="button" class="btn btn-labeled btn-success">
-                          <span class="btn-label"><i class="fa fa-pen"></i></span> Update
-                        </button>
-                        <button type="submit" name="orderItemDel" class="btn btn-labeled btn-danger">
-                          <span class="btn-label"><i class="fa fa-trash"></i></span> Delete
-                        </button>
-                    </td> -->
                   </tr>
                   </form>
                   <?php endif; ?>
                   <?php endforeach; ?>
                   <?php endforeach; ?>
+                  <tr>
+
+                  <?php 
+                  $sql = "SELECT * FROM return_product WHERE order_id ='{$_GET['order_id']}' LIMIT 1";
+                  $result = mysqli_query($conn,$sql);
+                  $return_details = mysqli_fetch_assoc($result);
+                  // var_dump($return_details);
+                  // exit;
+                  if ($return_details != NULL) {
+                   
+
+                        $sql = "SELECT * FROM return_item where return_id = {$return_details['return_id']} ";
+                        // echo $sql;
+                        // exit;
+                        $order = mysqli_query($conn,$sql);
+                        if($order) {
+                            $ret_details = mysqli_fetch_all($order,MYSQLI_ASSOC);
+                            // var_dump($order_details);
+                            // exit;
+                        }
+                        else {
+                            echo "Database Query Failed";
+                        } 
+                  }
+                  ?>
+
+                  <?php
+                  if ($return_details != NULL):
+                   foreach($ret_details as $key=>$value): //var_dump($value); ?>
+                <?php foreach($product_details as $key2=>$value2): //var_dump($value); ?>
+                <?php if($value['product_id'] == $value2['product_id'] ): //var_dump($value); ?>
+
+                  <form action="" method="post">
+                <input type="hidden" name="rowId" value=" <?php echo $value['id']; ?>">
+                  <tr class="bg-danger">
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <a href="#" class="avatar rounded-circle mr-3">
+                        
+                          <img alt="Image placeholder" src=" <?php echo $value2['image_path']; ?>">
+                        </a>
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm"> <?php echo $value2['product_name']; ?></span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="category">
+                    <?php echo $value2['product_catogery']; ?>
+                    </td>
+                    <td class="price">
+                    <?php echo $value2['sell_unit_price']; ?> LKR
+                    </td>
+                    <td>
+                    <?php echo $value['qty']; ?> 
+                    </td>
+                    <td>
+                    <?php $sub = $value['value'] ; echo $sub; ?> LKR
+                    </td>
+                  </tr>
+                  </form>
+
+
+                  <?php endif; ?>
+                  <?php endforeach; ?>
+                  <?php endforeach; ?>
+                  <?php endif; ?>
+                  
+                  </tr>
                 </tbody>
               </table>
             </div>

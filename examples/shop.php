@@ -59,9 +59,11 @@ if (!isset($_SESSION['id'])) {
         <div class=" col ">
           <div class="card">
             <div class="card-header bg-transparent">
+            <?php if ($_SESSION['usertype'] == '1'):  ?>
                 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#form">
                   <i class="fas fa-plus md-0"></i> ADD NEW SHOP
                 </button> 
+                <?php endif;  ?>
                 <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -139,9 +141,11 @@ if (!isset($_SESSION['id'])) {
                           <br>
                           <span class="text-nowrap"><i class="fa fa-phone"></i> <?php echo $value['shop_contact']; ?></span>
                         </p>
+                        <?php if ($_SESSION['usertype'] == '1'):  ?>
                         <button type="submit" name="shopDel" class="btn btn-sm btn-danger">
                             <span class="btn-label"><i class="fa fa-trash"></i></span> Delete
                        </button>
+                       <?php endif;  ?>
                       </div>
                       </form>
                     </div>

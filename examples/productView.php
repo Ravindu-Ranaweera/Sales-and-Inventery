@@ -89,7 +89,7 @@ if (!isset($_SESSION['id'])) {
               <option value="" >Select</option>
               <option value="Gang Switches" <?php if ($value['product_catogery'] == 'Gang Switches' ) echo ' selected="selected"'; ?> >Gang Switches</option>
               <option value="Sockets"  <?php if ($value['product_catogery'] == 'Sockets' ) echo ' selected="selected"'; ?>>Sockets</option>
-              <option value="Switch Gears"  <?php if ($value['product_catogery'] == 'Accessories' ) echo ' selected="Switch Gears"'; ?>>Switch Gears</option>
+              <option value="Switch Gears"  <?php if ($value['product_catogery'] == 'Switch Gears' ) echo ' selected="Switch Gears"'; ?>>Switch Gears</option>
               <option value="Accessories"  <?php if ($value['product_catogery'] == 'Accessories' ) echo ' selected="selected"'; ?>>Accessories</option>
               <option value="Other switches"  <?php if ($value['product_catogery'] == 'Other switches' ) echo ' selected="selected"'; ?>>Other switches</option>
             </select>
@@ -167,8 +167,10 @@ if (!isset($_SESSION['id'])) {
                                       </table>
                                     </div>
                                     <hr>
+                                    <?php if ($_SESSION['usertype'] == '1'):  ?>
                                     <button type="button" class="btn btn-primary btn-md mr-1 mb-2" data-toggle="modal" data-target="#form">Update</button>
                                     <button type="submit" name="productDel" class="btn btn-danger btn-md mr-1 mb-2">Delete</button>
+                                    <?php endif;  ?>
                                   </div>
                                 </div>
                                 <?php endif; ?>

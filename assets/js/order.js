@@ -146,7 +146,7 @@ $(function() {
     
     // Reset form on page load, optional
     $("#order-table input[type=text]:not('#product-subtotal')").val("");
-    $("#product-subtotal").val("$0");
+    $("#product-subtotal").val("LKR 0");
     $("#shipping-subtotal").val("$0");
     $("#fc-price").val("$0");
     $("#order-total").val("$0");

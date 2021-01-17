@@ -1,6 +1,7 @@
 <?php
-session_start();
-
+if (!isset($_SESSION['id'])) {
+  session_start();
+}
 require '../config/db.php';
 
 $errors =array();
