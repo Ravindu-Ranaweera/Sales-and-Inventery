@@ -11,8 +11,10 @@ if (isset($_POST['selectReturn'])){
     $shopId = $_POST['shop_id'];
     $orderId = $_POST['order_id'];
     $orderDate = $_POST['date'];
-    $query = "INSERT INTO return_product (return_id, order_id, shop_id , return_date) 
-        VALUES ( NULL,'{$orderId}', '{$shopId}', '{$orderDate}')";
+    $query = "INSERT INTO return_product (return_id, order_id, return_date) 
+        VALUES ( NULL,'{$orderId}', '{$orderDate}')";
+//            echo $query;
+//    exit;
     $result = mysqli_query($conn, $query);
     
     if($result) {
@@ -22,20 +24,35 @@ if (isset($_POST['selectReturn'])){
     
 }
 
+//read return data
+$sql = "SELECT * FROM return_product";
+$return = mysqli_query($conn,$sql);
+if($return) {
+    $return_details = mysqli_fetch_all($return,MYSQLI_ASSOC);
+}
+else {
+    echo "Database Query Failed";
+} 
+
+
 // submit return
 
 if (isset($_POST['submitReturnItem'])){
    
     // var_dump($_POST);
     // exit;
-    $str = $_POST['subTotal'];
+    $str = $_POST['returnSubTotal'];
     $newStr = str_replace(',', '', $str); // If you want it to be "185345321"
-    $num = intval($newStr); // If you want it to be a number 185345321
+    $num = intval($newStr);
    $count = 0; 
    $sql = "SELECT * FROM return_product ORDER BY return_id DESC LIMIT 1";
    $result = mysqli_query($conn, $sql);
    $row = mysqli_fetch_assoc($result);
    $return_id = $row['return_id'];
+   $sql2 = "UPDATE return_product SET return_value ={$num} WHERE return_id ={$return_id}";
+//    echo $sql2;
+//    exit;
+   $result = mysqli_query($conn, $sql2);
     
     foreach ($_POST as $key => $value) {
         $count++;
@@ -62,7 +79,6 @@ if (isset($_POST['submitReturnItem'])){
         }
  
         
-        $sql = "UPDATE return_product SET return_value ={$num} WHERE return_id={$return_id}";
     
         $result = mysqli_query($conn, $sql);
     }

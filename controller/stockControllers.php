@@ -3,6 +3,7 @@ if (!isset($_SESSION['id'])) {
   session_start();
 }
 require '../config/db.php';
+require_once '../controller/productControllers.php';
 
 // Read shop data
 $sql = "SELECT * FROM supplier_stock";
@@ -77,6 +78,13 @@ if (isset($_POST['submitStockItem'])){
                 $result = mysqli_query($conn, $query);
                
             }
+            $sql = "SELECT * FROM products WHERE product_id ={$product_id} LIMIT 1";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($result);
+            $newQty = $row['available_qty'] + $value;
+            $sql = "UPDATE products SET available_qty ={$newQty} WHERE product_id ={$product_id}";
+            $result = mysqli_query($conn, $sql);
+
         }
 
         if ($count == 3) {
@@ -92,9 +100,51 @@ if (isset($_POST['submitStockItem'])){
         }
         
     }
+
+
         header('location: supplyStock.php');
     
 }
+
+
+//delete order
+if (isset($_POST['deleteOrder'])){
+    // var_dump($_POST);
+    // exit;
+    $sql = "SELECT * FROM  supply_item WHERE supply_id = {$_POST['stock_id']} ";
+    $return = mysqli_query($conn,$sql);
+    if($return) {
+        $supitem_details = mysqli_fetch_all($return,MYSQLI_ASSOC);
+    }
+
+    foreach($supitem_details as $key=>$value){
+        foreach($product_details as $key=>$value1){
+            if ($value['product_id'] == $value1['product_id']) {
+                $newQty = $value1['available_qty'] - $value['qty'];
+                $sql = "UPDATE products SET available_qty ={$newQty} WHERE product_id ={$value['product_id']} ";
+                
+                // echo $sql;
+                // exit;
+                
+                $result = mysqli_query($conn, $sql);
+            }
+        }
+    } //var_dump($value); 
+
+    $query = "DELETE FROM supplier_stock WHERE stock_id ={$_POST['stock_id']}";
+    // echo $query;
+    // exit;
+    $result = mysqli_query($conn, $query);
+    
+
+    
+        
+    header('location: supplyStock.php');
+
+    
+}
+
+
 
 //add day load
 

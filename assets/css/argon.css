@@ -2239,8 +2239,8 @@ pre code {
 }
 
 .form-control {
-  font-size: 0.875rem;
-  font-weight: 400;
+  font-size: 1rem;
+  font-weight: 600;
   line-height: 1.5;
 
   display: block;
@@ -2251,7 +2251,7 @@ pre code {
 
   transition: all 0.15s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-  color: #8898aa;
+  color: #000000;
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
   background-color: #fff;

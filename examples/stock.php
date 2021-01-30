@@ -2,6 +2,7 @@
 if (!isset($_SESSION['id'])) {
   session_start();
 }
+require_once '../controller/productControllers.php'; 
 ?>
 <!DOCTYPE html>
 <html>
@@ -66,6 +67,151 @@ if (!isset($_SESSION['id'])) {
                 </div>
                 <div class="card col-lg-6 col-md-12">
                   <a  href="dailyStock.php" class="h2 border border-primary rounded p-3" ><i class="fas fa-chart-line "></i>  Daily Stock </a>
+              </div>
+
+              <div id="page-wrap">
+    
+                <div class="table-responsive">
+                  <table class="table align-items-center table-dark table-flush">
+                    <tr>
+                        <th>Product Name</th> 
+                        <th>Available Quantity</th>
+                        <th>Remaning</th>
+                        
+                    </tr>
+                      <tr>
+                        <td>
+                            <button type="button" id="hid">Hide</button>
+                            <button type="button" id="sho">Show</button>
+                            Accessories
+                            
+                        </td>
+                      </tr>
+                      
+                      <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
+                      <?php if($value['product_catogery'] == "Accessories"): //var_dump($value); ?>
+                      <tr class="o">
+                          <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                          <td class="text-center"><?php echo $value['available_qty']; ?></td>
+                          <td>
+                          <?php 
+                            if ($value['available_qty'] <25) :
+                          ?>
+                          <div class="alert alert-danger" role="alert">
+                              Please Order New Items. 
+                            </div>
+                            <?php endif; ?>
+                          </td>
+                      </tr>
+                            <?php endif; ?>
+                            <?php endforeach; ?>
+                      <tr>
+                        <td>
+                            <button id="hide">Hide</button>
+                            <button id="show">Show</button>
+                            Gang Switches
+                        </td>
+                      </tr>
+                      
+                      <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
+                      <?php if($value['product_catogery'] == "Gang Switches"): //var_dump($value); ?>
+                      <tr class="odd">
+                      <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                      <td class="text-center"><?php echo $value['available_qty']; ?></td>
+                      <td>
+                          <?php 
+                            if ($value['available_qty'] <25) :
+                          ?>
+                          <div class="alert alert-danger" role="alert">
+                              Please Order New Items. 
+                            </div>
+                            <?php endif; ?>
+                          </td>
+                      </tr>
+                            <?php endif; ?>
+                            <?php endforeach; ?>
+
+                      <tr>
+                      <td>
+                          <button id="hide">Hide</button>
+                          <button id="show">Show</button> 
+                          Other switches
+                      </td>
+                      </tr>
+                      <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
+                      <?php if($value['product_catogery'] == "Other switches"): //var_dump($value); ?>
+                      <tr class="odd">
+                      <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                      <td class="text-center"><?php echo $value['available_qty']; ?></td>
+                      <td>
+                          <?php 
+                            if ($value['available_qty'] <25) :
+                          ?>
+                          <div class="alert alert-danger" role="alert">
+                              Please Order New Items. 
+                            </div>
+                            <?php endif; ?>
+                          </td>
+                      </tr>
+                            <?php endif; ?>
+                            <?php endforeach; ?>
+                      
+                      <tr>
+                        <td>
+                            <button id="hide">Hide</button>
+                            <button id="show">Show</button>
+                            Sockets
+                        </td>
+                      </tr>
+                      <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
+                      <?php if($value['product_catogery'] == "Sockets"): //var_dump($value); ?>
+                      <tr class="odd">
+                      <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                      <td class="text-center"><?php echo $value['available_qty']; ?></td>
+                      <td>
+                          <?php 
+                            if ($value['available_qty'] <25) :
+                          ?>
+                          <div class="alert alert-danger" role="alert">
+                              Please Order New Items. 
+                            </div>
+                            <?php endif; ?>
+                          </td>
+                      </tr>
+                            <?php endif; ?>
+                            <?php endforeach; ?>
+
+                            <tr>
+                        <td>
+                        <button id="hide">Hide</button>
+                            <button id="show">Show</button>
+                            Switch Gears
+                        </td>
+                      </tr>
+                      <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
+                      <?php if($value['product_catogery'] == "Switch Gears"): //var_dump($value); ?>
+                      <tr class="odd">
+                      <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                      <td class="text-center"><?php echo $value['available_qty']; ?></td>
+                      <td>
+                          <?php 
+                            if ($value['available_qty'] <25) :
+                          ?>
+                          <div class="alert alert-danger" role="alert">
+                              Please Order New Items. 
+                            </div>
+                            <?php endif; ?>
+                          </td>
+                      </tr>
+                            <?php endif; ?>
+                            <?php endforeach; ?>
+                      
+                      
+                      
+                  </table>
+                </div>
+      
+
               </div>
             </div>
           </div>

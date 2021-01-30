@@ -1,10 +1,13 @@
-<?php require_once '../controller/shopControllers.php'; ?>
-<?php require_once '../controller/orderControllers.php'; ?>
 <?php
 if (!isset($_SESSION['id'])) {
   session_start();
+
 }
+
 ?>
+
+<?php require_once '../controller/reportControllers.php'; ?>
+<?php require_once '../controller/productControllers.php'; ?>
 <!DOCTYPE html>
 <html>
 
@@ -40,12 +43,12 @@ if (!isset($_SESSION['id'])) {
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Shops</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Reports</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item"><a href="../dashboard.php">Dashboard</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Shops</li>
+                  <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Reports</li>
                 </ol>
               </nav>
             </div>
@@ -53,55 +56,92 @@ if (!isset($_SESSION['id'])) {
         </div>
       </div>
     </div>
+
     <!-- Page content -->
-    <div class="container-fluid mt--6 ph-3">
+    <div class="container-fluid mt--6">
       <div class="row justify-content-center">
         <div class=" col ">
           <div class="card">
             <div class="card-header bg-transparent">
-            
+              <h3 class="mb-0">Generate Report</h3>
             </div>
             <div class="card-body">
-              <div class="row ph-5">
-                <?php foreach($shop_details as $key=>$value): //var_dump($value); ?>
-                <?php if($value['shop_isdelete']=='0'): //var_dump($value); ?>
-                
-                
-                <div class=" col-xl-3 col-md-6">
-                    <div class="bg-dark card card-stats">
-                      <!-- Card body -->
-                      <form action="shop.php" method="post">
-                      <input type="hidden" name="shopid" value="<?php echo $value['shop_id']; ?>">
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col">
-                            <a href="paymentShopProfile .php?shop_id=<?php echo $value['shop_id']; ?>"><h3 class="card-title text-uppercase text-muted mb-0"><?php echo $value['shop_name']; ?></h3></a>
-                            
-                          </div>
-                          <div class="col-auto">
-                            <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                              <i class="ni ni-shop"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <p class="mt-3 mb-0 text-sm">
-                          <span class="text-success mr-2"><i class="fa fa-user"></i> <?php echo $value['owner_name']; ?></span>
-                          <br>
-                          <span class="text-nowrap"><i class="fa fa-phone"></i> <?php echo $value['shop_contact']; ?></span>
-                        </p>
-                      </div>
-                      </form>
-                    </div>
-                
-            </div>
-            <?php endif; ?>
-            <?php endforeach; ?>
+              <?php 
+              date_default_timezone_set("Asia/Kolkata"); 
+              $Due = date("Y-m-d");
+              $pre = $_GET['date'];
+              $sql = "SELECT sum(total_amount) FROM place_order WHERE order_date BETWEEN '{$pre}' AND '{$Due}'";
+              // echo $sql;
+              // exit;
+              $result = mysqli_query($conn, $sql);
+              $row = mysqli_fetch_assoc($result);
+
+              $sql = "SELECT sum(billing_price) FROM supplier_stock WHERE recived_date BETWEEN '{$pre}' AND '{$Due}'";
+                echo $sql;
+                exit;
+              $result = mysqli_query($conn, $sql);
+              $row1 = mysqli_fetch_assoc($result);
+              ?>
+
+<div id="page-wrap">
+    
+    <div class="table-responsive">
+      <table class="table align-items-center table-dark table-flush">
+        <tr>
+            <th>#Title</th> 
+            <th>Amount</th>
             
-          </div>
+        </tr>
+
+        <tr>
+          <td>Item Purches Value </td>
+          <td>
+          <?php  echo $row1['sum(billing_price)']; ?>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Complete Order Value </td>
+          <td>
+          <?php  echo $row['sum(total_amount)']; ?>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Recied Order Value </td>
+          <td>
+          
+          </td>
+        </tr>
+
+        <tr>
+          <td>Return Item Value </td>
+          <td>
+          
+          </td>
+        </tr>
+          
+        <tr>
+          <td>Valuation Profit </td>
+          <td>
+          
+          </td>
+        </tr>
+          
+          
+          
+      </table>
+    </div>
+
+
+  </div>
+
+            </div>
           </div>
         </div>
       </div>
       </div>
+
   <!-- Core -->
   <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

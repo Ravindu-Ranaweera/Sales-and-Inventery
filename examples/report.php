@@ -1,8 +1,14 @@
 <?php
 if (!isset($_SESSION['id'])) {
   session_start();
+
 }
+
 ?>
+
+<?php require_once '../controller/reportControllers.php'; ?>
+<?php require_once '../controller/shopControllers.php'; ?>
+<?php require_once '../controller/productControllers.php'; ?>
 <!DOCTYPE html>
 <html>
 
@@ -51,6 +57,121 @@ if (!isset($_SESSION['id'])) {
         </div>
       </div>
     </div>
+
+
+    <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header border-bottom-0">
+            <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+              <div class="form-group">
+                <label >Select Previous Date</label>
+                <input type="date" class="form-control" name="previousDate" aria-describedby="emailHelp" >
+              </div>
+            </div>
+            
+            <div class="modal-footer border-top-0 d-flex justify-content-center">
+              <button type="submit" name ="findFin" class="btn btn-success">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="form1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header border-bottom-0">
+            <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="" method="post" >
+            <div class="modal-body">
+              <div class="form-group">
+                <label >Select Previous Date</label>
+                <input type="date" class="form-control" name="previousDate" aria-describedby="emailHelp" required>
+              </div>
+            </div>
+            
+            <div class="modal-footer border-top-0 d-flex justify-content-center">
+              <button type="submit" name ="findSale" class="btn btn-success">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="form0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header border-bottom-0">
+            <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="" method="post" >
+            <div class="modal-body">
+            <div class="form-group">
+            <label for="exampleFormControlSelect1">Product Item</label>
+            <select class="form-control" name="item">
+              <option value="" >Select</option>
+              <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
+              <?php echo "<option value=".$value['product_id']. " >".$value['product_name']."</option>;"; ?>
+              
+              <?php endforeach; ?>
+            </select>
+          </div>
+            </div>
+            
+            <div class="modal-footer border-top-0 d-flex justify-content-center">
+              <button type="submit" name ="findProduct" class="btn btn-success">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="form2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header border-bottom-0">
+            <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="" method="post" >
+            <div class="modal-body">
+            <div class="form-group">
+            <label for="exampleFormControlSelect1">Shop Name</label>
+            <select class="form-control" name="item">
+              <option value="" >Select</option>
+              <?php foreach($shop_details as $key=>$value): //var_dump($value); ?>
+              <?php if($value['shop_isdelete'] == 0  ): //var_dump($value); ?>
+              <?php echo "<option value=".$value['shop_id']. " >".$value['shop_name']."</option>;"; ?>
+              
+              <?php endif; ?>
+              <?php endforeach; ?>
+            </select>
+          </div>
+            </div>
+            
+            <div class="modal-footer border-top-0 d-flex justify-content-center">
+              <button type="submit" name ="findShop" class="btn btn-success">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     <!-- Page content -->
     <div class="container-fluid mt--6">
       <div class="row justify-content-center">
@@ -63,13 +184,26 @@ if (!isset($_SESSION['id'])) {
               <div class="row icon-examples">
                 <div class="card col-lg-6 col-md-12 ">
                   <h2  href="supplyStock.php" class="h2 border border-primary rounded p-3 text-center" ><i class="fas fa-file-pdf text-danger"></i> Product Sales Report</h2>
-                  <button type="button" class="btn btn-labeled btn-success">
+                  <button type="button" class="btn btn-labeled btn-success" data-toggle="modal" data-target="#form1">
+                      <span class="btn-label"><i class="fas fa-cog"></i></i></span> Genarate Report
+                  </button>
+                </div>
+                <div class="card col-lg-6 col-md-12 ">
+                  <h2  href="supplyStock.php" class="h2 border border-primary rounded p-3 text-center" ><i class="fas fa-file-pdf text-danger"></i> Product item Report</h2>
+                  <button type="button" class="btn btn-labeled btn-success" data-toggle="modal" data-target="#form0">
                       <span class="btn-label"><i class="fas fa-cog"></i></i></span> Genarate Report
                   </button>
                 </div>
                 <div class="card col-lg-6 col-md-12">
                   <h2  href="dailyStock.php" class="h2 border border-primary rounded p-3 text-center" ><i class="fas fa-file-pdf text-danger"></i> Financial Report </h2>
-                  <button type="button" class="btn btn-labeled btn-success">
+                  <button type="button" class="btn btn-labeled btn-success" data-toggle="modal" data-target="#form">
+                      <span class="btn-label"><i class="fas fa-cog"></i></span> Genarate Report
+                  </button>
+                  
+              </div>
+              <div class="card col-lg-6 col-md-12">
+                  <h2  href="dailyStock.php" class="h2 border border-primary rounded p-3 text-center" ><i class="fas fa-file-pdf text-danger"></i> Shop Report </h2>
+                  <button type="button" class="btn btn-labeled btn-success" data-toggle="modal" data-target="#form2">
                       <span class="btn-label"><i class="fas fa-cog"></i></span> Genarate Report
                   </button>
                   

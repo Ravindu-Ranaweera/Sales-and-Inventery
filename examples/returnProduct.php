@@ -259,7 +259,7 @@ $(document).ready(function(){
                         <td></td>
                           <td >
                              
-                              <input type="text" name="subTotal" class="total-box " value="" id="product-subtotal" readonly="readonly"></input>
+                              <input type="text" name="returnSubTotal" class="total-box " value="" id="product-subtotal" readonly="readonly"></input>
                           </td>
                       </tr>
                       <tr>

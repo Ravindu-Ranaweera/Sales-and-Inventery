@@ -85,6 +85,10 @@ if (isset($_POST['submitOrderItem'])){
                 // echo $query;
                 // exit;
                 $result = mysqli_query($conn, $query);
+
+                $newQty = $row['available_qty'] - $value;
+                $sql = "UPDATE products SET available_qty ={$newQty} WHERE product_id ={$product_id}";
+                $result = mysqli_query($conn, $sql);
                 $count=0;
             }else{
                 $count =0;

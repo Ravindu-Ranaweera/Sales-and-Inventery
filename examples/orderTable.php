@@ -133,6 +133,7 @@ $(document).ready(function(){
                 <table id="order-table">
                     <tr>
                         <th>Product Name</th> 
+                        <th>Available Qty</th> 
                         <th>Quantity</th>
                         <th>X</th>
                         <th>Unit Price</th>
@@ -153,6 +154,7 @@ $(document).ready(function(){
                       <?php if($value['product_catogery'] == "Accessories"): //var_dump($value); ?>
                       <tr class="Accessories">
                       <td class="product-title"><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                          <td class=""><?php echo $value['available_qty']; ?> </td>
                           <td class="num-pallets"><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="num-pallets-input form-control form-control-sm" id="sparkle-num-pallets" value="0"></input></td>
                           <td class="times">X</td>
                           <td class="price-per-pallet">LKR<span><?php echo $value['sell_unit_price']; ?> </span></td>
@@ -173,6 +175,7 @@ $(document).ready(function(){
                       <?php if($value['product_catogery'] == "Gang Switches"): //var_dump($value); ?>
                       <tr class="GangSwitches">
                       <td class="product-title"><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                       <td class=""><?php echo $value['available_qty']; ?> </td>
                           <td class="num-pallets"><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="num-pallets-input form-control form-control-sm" id="sparkle-num-pallets" value="0"></input></td>
                           <td class="times">X</td>
                           <td class="price-per-pallet">LKR<span><?php echo  $value['sell_unit_price']; ?> </span></td>
@@ -192,7 +195,9 @@ $(document).ready(function(){
                       <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
                       <?php if($value['product_catogery'] == "Other switches"): //var_dump($value); ?>
                       <tr class="Otherswitches">
+                      
                       <td class="product-title"><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                      <td class=""><?php echo $value['available_qty']; ?> </td>
                           <td class="num-pallets"><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="num-pallets-input form-control form-control-sm" id="sparkle-num-pallets" value="0"></input></td>
                           <td class="times">X</td>
                           <td class="price-per-pallet">LKR<span><?php echo  $value['sell_unit_price']; ?> </span></td>
@@ -213,6 +218,7 @@ $(document).ready(function(){
                       <?php if($value['product_catogery'] == "Sockets"): //var_dump($value); ?>
                       <tr class="Sockets">
                       <td class="product-title"><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                      <td class=""><?php echo $value['available_qty']; ?> </td>
                           <td class="num-pallets"><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="num-pallets-input form-control form-control-sm" id="sparkle-num-pallets" value="0"></input></td>
                           <td class="times">X</td>
                           <td class="price-per-pallet">LKR<span><?php echo $value['sell_unit_price']; ?> </span></td>
@@ -233,7 +239,8 @@ $(document).ready(function(){
                       <?php if($value['product_catogery'] == "Switch Gears"): //var_dump($value); ?>
                       <tr class="SwitchGears">
                           <td class="product-title"><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                          <td class="num-pallets"><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="num-pallets-input form-control form-control-sm" id="sparkle-num-pallets" value="0"></input></td>
+                          <td class=""><?php echo $value['available_qty']; ?> </td>
+                          <td class="num-pallets"><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?> qqty" class="num-pallets-input form-control form-control-sm" id="sparkle-num-pallets" value="0"></input></td>
                           <td class="times">X</td>
                           <td class="price-per-pallet">LKR<span><?php echo  $value['sell_unit_price'] ; ?> </span></td>
                           <td class="equals">=</td>
@@ -248,9 +255,11 @@ $(document).ready(function(){
                         <td></td>
                         <td></td>
                         <td></td>
+                        <td></td>
                         <td > <strong>Product SUBTOTAL:</strong> </td>
                       </tr>
                       <tr>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -263,6 +272,7 @@ $(document).ready(function(){
                       </tr>
                       <tr>
                       <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -282,6 +292,13 @@ $(document).ready(function(){
         </div>
       </div>
       </div>
+
+      <script>
+            
+
+
+            
+        </script>
 
   <!-- Core -->
   <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>

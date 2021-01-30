@@ -72,124 +72,124 @@ if (!isset($_SESSION['id'])) {
             </div>
             <div class="card-body">
 
-            <div id="page-wrap">
+              <div id="page-wrap">
     
-        <!-- <h1>Multi-product Quantity-based Order Form</h1> -->
-        <form action="" method="post">
-        <div class="table-responsive">
-        <table class="table align-items-center table-dark table-flush">
-    	    <tr>
-    	         <th>Product Name</th> 
-    	         <th>Quantity</th>
-    	         <th>Unit Price</th>
-    	         
-    	    </tr>
-            <tr>
-              <td>
-                  <button type="button" id="hid">Hide</button>
-                  <button type="button" id="sho">Show</button>
-                  Accessories
-                  
-              </td>
-            </tr>
-            
-            <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
-            <?php if($value['product_catogery'] == "Accessories"): //var_dump($value); ?>
-            <tr class="o">
-                <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
-                <td class=""><input type="text" name="<?php echo 'bill-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
-                
-            </tr>
-                  <?php endif; ?>
-                  <?php endforeach; ?>
-            <tr>
-              <td>
-                  <button id="hide">Hide</button>
-                  <button id="show">Show</button>
-                  Gang Switches
-              </td>
-            </tr>
-            
-            <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
-            <?php if($value['product_catogery'] == "Gang Switches"): //var_dump($value); ?>
-            <tr class="odd">
-            <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
-                
-            </tr>
-                  <?php endif; ?>
-                  <?php endforeach; ?>
+              <!-- <h1>Multi-product Quantity-based Order Form</h1> -->
+              <form action="" method="post">
+                <div class="table-responsive">
+                  <table class="table align-items-center table-dark table-flush">
+                    <tr>
+                        <th>Product Name</th> 
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        
+                    </tr>
+                      <tr>
+                        <td>
+                            <button type="button" id="hid">Hide</button>
+                            <button type="button" id="sho">Show</button>
+                            Accessories
+                            
+                        </td>
+                      </tr>
+                      
+                      <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
+                      <?php if($value['product_catogery'] == "Accessories"): //var_dump($value); ?>
+                      <tr class="o">
+                          <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                          <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                          <td class=""><input type="text" name="<?php echo 'bill-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value['bill_unit_price']; ?>"></input></td>
+                          
+                      </tr>
+                            <?php endif; ?>
+                            <?php endforeach; ?>
+                      <tr>
+                        <td>
+                            <button id="hide">Hide</button>
+                            <button id="show">Show</button>
+                            Gang Switches
+                        </td>
+                      </tr>
+                      
+                      <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
+                      <?php if($value['product_catogery'] == "Gang Switches"): //var_dump($value); ?>
+                      <tr class="odd">
+                      <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                          <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                          <td class=""><input type="text" name="<?php echo 'bill-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value['bill_unit_price']; ?>"></input></td>
+                          
+                      </tr>
+                            <?php endif; ?>
+                            <?php endforeach; ?>
 
-            <tr>
-            <td>
-                <button id="hide">Hide</button>
-                <button id="show">Show</button> 
-                Other switches
-            </td>
-            </tr>
-            <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
-            <?php if($value['product_catogery'] == "Other switches"): //var_dump($value); ?>
-            <tr class="odd">
-            <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
-                
-            </tr>
-                  <?php endif; ?>
-                  <?php endforeach; ?>
+                      <tr>
+                      <td>
+                          <button id="hide">Hide</button>
+                          <button id="show">Show</button> 
+                          Other switches
+                      </td>
+                      </tr>
+                      <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
+                      <?php if($value['product_catogery'] == "Other switches"): //var_dump($value); ?>
+                      <tr class="odd">
+                      <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                          <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                          <td class=""><input type="text" name="<?php echo 'bill-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value['bill_unit_price']; ?>"></input></td>
+                          
+                      </tr>
+                            <?php endif; ?>
+                            <?php endforeach; ?>
+                      
+                      <tr>
+                        <td>
+                            <button id="hide">Hide</button>
+                            <button id="show">Show</button>
+                            Sockets
+                        </td>
+                      </tr>
+                      <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
+                      <?php if($value['product_catogery'] == "Sockets"): //var_dump($value); ?>
+                      <tr class="odd">
+                      <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                          <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                          <td class=""><input type="text" name="<?php echo 'bill-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value['bill_unit_price']; ?>"></input></td>
+                          
+                      </tr>
+                            <?php endif; ?>
+                            <?php endforeach; ?>
+                      
+                      <tr>
+                        <td>
+                            <button id="hide">Hide</button>
+                            <button id="show">Show</button>
+                            Switch Gears
+                        </td>
+                      </tr>
+                      <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
+                      <?php if($value['product_catogery'] == "Switch Gears"): //var_dump($value); ?>
+                      <tr class="odd">
+                      <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
+                          <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control "  ></input></td>
+                          <td class=""><input type="text" name="<?php echo 'bill-'.$value['product_name']; ?>" class="form-control "  value="<?php echo $value['bill_unit_price']; ?>"></input></td>
+                          
+                      </tr>
+                            <?php endif; ?>
+                            <?php endforeach; ?>
+                      </tr>
+                      
+                      <tr>
+                      <td colspan="6" style="text-align: right;">
+                      <input type="submit" name="submitStockItem" />
+                          </td>
+                      
+                      </tr>
+                  </table>
+                </div>
             
-            <tr>
-              <td>
-                  <button id="hide">Hide</button>
-                  <button id="show">Show</button>
-                  Sockets
-              </td>
-            </tr>
-            <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
-            <?php if($value['product_catogery'] == "Sockets"): //var_dump($value); ?>
-            <tr class="odd">
-            <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
-                
-            </tr>
-                  <?php endif; ?>
-                  <?php endforeach; ?>
-            
-            <tr>
-              <td>
-                  <button id="hide">Hide</button>
-                  <button id="show">Show</button>
-                  Switch Gears
-              </td>
-            </tr>
-            <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
-            <?php if($value['product_catogery'] == "Switch Gears"): //var_dump($value); ?>
-            <tr class="odd">
-            <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
-                
-            </tr>
-                  <?php endif; ?>
-                  <?php endforeach; ?>
-            </tr>
-            
-            <tr>
-            <td colspan="6" style="text-align: right;">
-            <input type="submit" name="submitStockItem" />
-                </td>
-            
-            </tr>
-    	</table>
-        </div>
-    	
-    	</form>
+              </form>
       
 
-    </div>
+              </div>
               
             </div>
           </div>
