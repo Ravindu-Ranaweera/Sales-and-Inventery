@@ -77,10 +77,54 @@ if (!isset($_SESSION['id'])) {
               $row = mysqli_fetch_assoc($result);
 
               $sql = "SELECT sum(billing_price) FROM supplier_stock WHERE recived_date BETWEEN '{$pre}' AND '{$Due}'";
-                echo $sql;
-                exit;
+                // echo $sql;
+                // exit;
               $result = mysqli_query($conn, $sql);
               $row1 = mysqli_fetch_assoc($result);
+
+              $sql = "SELECT sum(total_amount) FROM payment WHERE payment_date BETWEEN '{$pre}' AND '{$Due}'";
+                // echo $sql;
+                // exit;
+              $result = mysqli_query($conn, $sql);
+              $row2 = mysqli_fetch_assoc($result);
+
+              $sql = "SELECT sum(return_value) FROM return_product WHERE return_date BETWEEN '{$pre}' AND '{$Due}'";
+                // echo $sql;
+                // exit;
+              $result = mysqli_query($conn, $sql);
+              $row3 = mysqli_fetch_assoc($result);
+
+
+              $sql = "SELECT order_id FROM place_order WHERE order_date BETWEEN '{$pre}' AND '{$Due}'";
+              // echo $sql;
+              // exit;
+              $result = mysqli_query($conn, $sql);
+              if($result) {
+                $order_details = mysqli_fetch_all($result,MYSQLI_ASSOC);
+              }
+              
+              $data=$order_details; //associative array
+
+              $simple_array = array(); //simple array
+        
+              if ($data != NULL) {
+                foreach($data as $d)
+                {
+                      $simple_array[]=$d['order_id'];   
+                }
+                // var_dump($simple_array1);
+                // exit;
+                $ids = join("','",$simple_array); 
+                $sql = "SELECT sum(profit) FROM order_item WHERE order_id in ('$ids')";
+                // echo $sql;
+                // exit;
+                $result = mysqli_query($conn, $sql);
+                $row4= mysqli_fetch_assoc($result);
+                // echo '<pre>' , var_dump($list_details) , '</pre>';
+                
+              }else{
+                 $row4['sum(profit)'] =NULL;
+              }
               ?>
 
 <div id="page-wrap">
@@ -96,35 +140,35 @@ if (!isset($_SESSION['id'])) {
         <tr>
           <td>Item Purches Value </td>
           <td>
-          <?php  echo $row1['sum(billing_price)']; ?>
-          </td>
+          <?php  if($row1['sum(billing_price)'] != NULL){ echo $row1['sum(billing_price)'];}else{ echo "0.00";} ?> LKR
+          </td> 
         </tr>
 
         <tr>
           <td>Complete Order Value </td>
           <td>
-          <?php  echo $row['sum(total_amount)']; ?>
-          </td>
+          <?php if($row['sum(total_amount)'] != NULL){ echo $row['sum(total_amount)'];}else{ echo " 0.00";} ?> LKR
+          </td> 
         </tr>
 
         <tr>
           <td>Recied Order Value </td>
           <td>
-          
+          <?php if($row2['sum(total_amount)'] != NULL){ echo $row2['sum(total_amount)'];}else{ echo " 0.00";} ?> LKR
           </td>
         </tr>
 
         <tr>
           <td>Return Item Value </td>
           <td>
-          
+          <?php if($row3['sum(return_value)'] != NULL){ echo $row3['sum(return_value)'];}else{ echo " 0.00";} ?> LKR
           </td>
         </tr>
           
         <tr>
           <td>Valuation Profit </td>
           <td>
-          
+          <?php if($row4['sum(profit)'] != NULL){ echo $row4['sum(profit)']; } else{ echo " 0.00";} ?> LKR
           </td>
         </tr>
           

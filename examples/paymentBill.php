@@ -106,12 +106,18 @@ if (!isset($_SESSION['id'])) {
                     Return Item Amount
                 </td>
                 <td>
-                <?php foreach($return_details as $key=>$value): //var_dump($value); ?>
-                <?php if($_GET['order_id'] == $value['order_id']):?>
+                <?php  $count= 0; ?>
+                <?php foreach($return_details as $key=>$value):  ?>
+                <?php if($_GET['order_id'] == $value['order_id']): ;?>
+                <?php $count=1;?>
                 
                     <input type="number" name="return"  class="form-control " value="<?php echo $value['return_value'];?>" readonly>
                     <?php endif; ?>
                     <?php endforeach; ?>
+                    <?php if($count==0):     ?>
+                    <input type="number" name="return"  class="form-control " value="0.00" readonly>
+                    <?php endif; ?>
+
                 </td>
             </tr>
             <tr>
@@ -119,11 +125,12 @@ if (!isset($_SESSION['id'])) {
                     Total Bill Amount
                 </td>
                 <td>
+                <?php  $count=0; //var_dump($value); ?>
                 <?php foreach($order_details as $key=>$value): //var_dump($value); ?>
                 <?php if($_GET['order_id'] == $value['order_id']):?>
                 
                     <?php foreach($return_details as $key=>$value1): //var_dump($value); ?>
-                <?php if($_GET['order_id'] == $value1['order_id']):?>
+                <?php if($_GET['order_id'] == $value1['order_id']): $count++;?>
                 <?php $x= $value['total_amount'] - $value1['return_value'];
                 ?>
                 
@@ -132,6 +139,9 @@ if (!isset($_SESSION['id'])) {
                     <?php endforeach; ?>
                     <?php endif; ?>
                     <?php endforeach; ?>
+                    <?php if($count==0):     ?>
+                    <input type="number" name="return"  class="form-control " value="<?php echo $value['total_amount'];?>" readonly>
+                    <?php endif; ?>
                 </td>
             </tr>
             <tr>
@@ -143,6 +153,8 @@ if (!isset($_SESSION['id'])) {
                 <?php if($_GET['order_id'] == $value['order_id']):?>
                 
                     <input type="number" name="paid" class="form-control " value="<?php echo $value['paid_amount'];?>" readonly>
+                    <?php else: ?>
+                    
                     <?php endif; ?>
                     <?php endforeach; ?>
                 </td>
@@ -153,11 +165,12 @@ if (!isset($_SESSION['id'])) {
                     Balance Bill Amount
                 </td>
                 <td>
-                <?php foreach($order_details as $key=>$value): //var_dump($value); ?>
+                <?php $count=0;//var_dump($value); ?>
+                <?php foreach($order_details as $key=>$value): ;//var_dump($value); ?>
                 <?php if($_GET['order_id'] == $value['order_id']):?>
                 
                     <?php foreach($return_details as $key=>$value1): //var_dump($value); ?>
-                <?php if($_GET['order_id'] == $value1['order_id']):?>
+                <?php if($_GET['order_id'] == $value1['order_id']): $count++;?>
                 <?php $s= $value['total_amount'] - ($value1['return_value']+$value['paid_amount']);
                 ?>
                 
@@ -166,6 +179,11 @@ if (!isset($_SESSION['id'])) {
                     <?php endforeach; ?>
                     <?php endif; ?>
                     <?php endforeach; ?>
+                    <?php if($count==0):     ?>
+                        <?php $s= $value['total_amount'] - $value['paid_amount'];
+                ?>
+                    <input type="number" name="return"  class="form-control " value="<?php echo $s;?>" readonly>
+                    <?php endif; ?>
                 </td>
             </tr>
 

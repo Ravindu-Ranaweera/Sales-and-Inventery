@@ -175,12 +175,16 @@ if (!isset($_SESSION['id'])) {
                                 $sql = "SELECT * FROM  return_product WHERE order_id = {$_GET['order_id']} LIMIT 1";
                                 $result = mysqli_query($conn, $sql);
                                 $row2 = mysqli_fetch_assoc($result);
+                                $ret=0;
+                                
 
-                                $sql = "SELECT * FROM  return_item WHERE return_id = {$row2['return_id']}";
-                                $return = mysqli_query($conn,$sql);
-                                if($return) {
-                                    $ritem_details = mysqli_fetch_all($return,MYSQLI_ASSOC);
+                                if( $row2 != NULL){
+                                   
+                                    $ret =$row2['return_value'];
+                                    
+
                                 }
+                                
                                 
                             ?>
 
@@ -229,7 +233,7 @@ if (!isset($_SESSION['id'])) {
                             <td ><strong>Return Total:</strong></td>
 
                             <td>
-                            -<?php echo $row2['return_value'];   ?> LKR 
+                            -<?php echo $ret;   ?> LKR 
                             </td>
                             </tr>
                             <?php endforeach; ?>
@@ -240,7 +244,7 @@ if (!isset($_SESSION['id'])) {
                             <td ></td>
                             <td ></td>
                             <td>
-                            <?php echo ($row['total_amount'] - $row2['return_value'] );   ?> LKR 
+                            <?php echo ($row['total_amount'] - $ret);   ?> LKR 
                             </td>
                             </tr>
 
@@ -300,7 +304,7 @@ if (!isset($_SESSION['id'])) {
                             <td ></td>
                             <td ></td>
                             <td>
-                                <?php echo ($row['total_amount'] - $row2['return_value'] )- $row['paid_amount'] ;  ?> LKR 
+                                <?php echo ($row['total_amount'] - $ret)- $row['paid_amount'] ;  ?> LKR 
                             </td>
                             <tr>
                             <td></td>
