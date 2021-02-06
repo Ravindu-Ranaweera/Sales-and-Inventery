@@ -34,12 +34,12 @@ if (isset($_POST['addStock'])){
 
     $inv = $_POST['invoice'];
     $rdate = $_POST['rdate'];
-    $amount = $_POST['bill'];
+    // $amount = $_POST['bill'];
     $note = $_POST['note'];
     $sk = $_POST['sk'];
 
-    $query = "INSERT INTO supplier_stock (stock_id, invoice_no , stock_keeper, 	recived_date, billing_price, special_note) 
-        VALUES ( NULL,'{$inv}', '{$sk}', '{$rdate}', '{$amount}','{$note}')";
+    $query = "INSERT INTO supplier_stock (stock_id, invoice_no , stock_keeper, 	recived_date, special_note) 
+        VALUES ( NULL,'{$inv}', '{$sk}', '{$rdate}','{$note}')";
     //     echo $query;
     // exit;
     $result = mysqli_query($conn, $query);
@@ -63,7 +63,9 @@ if (isset($_POST['submitStockItem'])){
    $result = mysqli_query($conn, $sql);
    $row = mysqli_fetch_assoc($result);
    $stock_id = $row['stock_id'];
-    
+    $bill=0;
+    $Qty= 0;
+    $tot=0;
     foreach ($_POST as $key => $value) {
         $count++;
         if ($count == 1) {
@@ -71,12 +73,17 @@ if (isset($_POST['submitStockItem'])){
         }
         
         if ($count==2) {
-            if ($value != "") {
+            if ($value != 0) {
                 $query = "INSERT INTO supply_item (sup_id , supply_id , product_id , qty) 
                 VALUES ( NULL,'{$stock_id}', '{$product_id}', '{$value}')";
                 
                 $result = mysqli_query($conn, $query);
+                $string = $value;
+                $float  = floatval($string);
+                $Qty = $float;
                
+            }else{
+                $Qty=0;
             }
             $sql = "SELECT * FROM products WHERE product_id ={$product_id} LIMIT 1";
             $result = mysqli_query($conn, $sql);
@@ -90,7 +97,14 @@ if (isset($_POST['submitStockItem'])){
         if ($count == 3) {
             $sql = "SELECT * FROM products WHERE product_id ={$product_id} LIMIT 1";
             $result = mysqli_query($conn, $sql);
+
             $row = mysqli_fetch_assoc($result);
+
+            $string = $value;
+            $float  = floatval($string);
+            $tot = $Qty * $float;
+            // echo $tot;  
+            $bill+= $tot;
             if($row['bill_unit_price'] != $value){
                 $sql = "UPDATE products SET bill_unit_price ={$value} WHERE product_id ={$product_id}";
                 $result = mysqli_query($conn, $sql);
@@ -100,7 +114,9 @@ if (isset($_POST['submitStockItem'])){
         }
         
     }
-
+    // echo $bill; exit;
+    $sql = "UPDATE supplier_stock SET billing_price ={$bill} WHERE stock_id ={$stock_id}";
+    $result = mysqli_query($conn, $sql);
 
         header('location: supplyStock.php');
     

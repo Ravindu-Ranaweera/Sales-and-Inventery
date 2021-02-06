@@ -33,7 +33,52 @@ if (!isset($_SESSION['id'])) {
 
 <body>
 
+<script>
+  $(document).ready(function(){
+    $("#hideAccessories").click(function(){
+      $(".Accessories").hide();
+    });
+    $("#showAccessories").click(function(){
+      $(".Accessories").show();
+    });
+  });
 
+  $(document).ready(function(){
+    $("#hideGangSwitches").click(function(){
+      $(".GangSwitches").hide();
+    });
+    $("#showGangSwitches").click(function(){
+      $(".GangSwitches").show();
+    });
+  });
+
+  $(document).ready(function(){
+    $("#hideOtherswitches").click(function(){
+      $(".Otherswitches").hide();
+    });
+    $("#showOtherswitches").click(function(){
+      $(".Otherswitches").show();
+    });
+  });
+
+  $(document).ready(function(){
+    $("#hideSockets").click(function(){
+      $(".Sockets").hide();
+    });
+    $("#showSockets").click(function(){
+      $(".Sockets").show();
+    });
+  });
+
+  $(document).ready(function(){
+    $("#hideSwitchGears").click(function(){
+      $(".SwitchGears").hide();
+    });
+    $("#showSwitchGears").click(function(){
+      $(".SwitchGears").show();
+    });
+  });
+</script>
 
 
 <!-- Sidenav -->
@@ -49,7 +94,7 @@ if (!isset($_SESSION['id'])) {
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Stocks</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Stocks Manage</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
@@ -68,7 +113,7 @@ if (!isset($_SESSION['id'])) {
         <div class=" col ">
           <div class="card">
             <div class="card-header bg-transparent">
-              <h3 class="mb-0">Stock Manage</h3>
+              <h3 class="mb-0">Add Loading Details</h3>
             </div>
             <div class="card-body">
 
@@ -85,37 +130,36 @@ if (!isset($_SESSION['id'])) {
     	    </tr>
             <tr>
               <td>
-              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideAccessories"><strong>-</strong></button>
-                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showAccessories"><strong>+</strong></button>
+              <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideAccessories">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showAccessories">Show</button>
                           <strong>Accessories</strong> 
                   
               </td>
             </tr>
             
             <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
-            <?php if($value['product_catogery'] == "Accessories"): //var_dump($value); ?>
+            <?php if($value['product_catogery'] == "Accessories" && $value['is_delete'] == 0): //var_dump($value); ?>
               <tr class="Accessories">
                 <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
-                <!-- <td class=""><input type="text" name="<?php echo 'bill-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td> -->
+                <td class=""><input type="number" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
                 
             </tr>
                   <?php endif; ?>
                   <?php endforeach; ?>
             <tr>
               <td>
-              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideGangSwitches"><strong>-</strong></button>
-                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showGangSwitches"><strong>+</strong></button>
+              <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideGangSwitches">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showGangSwitches">Show</button>
                             <strong>Gang Switches</strong>
               </td>
             </tr>
             
             <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
-            <?php if($value['product_catogery'] == "Gang Switches"): //var_dump($value); ?>
+            <?php if($value['product_catogery'] == "Gang Switches" && $value['is_delete'] == 0): //var_dump($value); ?>
               <tr class="GangSwitches">
             <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
-                <!-- <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td> -->
+                <td class=""><input type="number" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                 
                 
             </tr>
                   <?php endif; ?>
@@ -123,17 +167,17 @@ if (!isset($_SESSION['id'])) {
 
             <tr>
             <td>
-            <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideOtherswitches"><strong>-</strong></button>
-                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showOtherswitches"><strong>+</strong></button>
+            <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideOtherswitches">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showOtherswitches">Show</button>
                           <strong>Other switches</strong>
             </td>
             </tr>
             <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
-            <?php if($value['product_catogery'] == "Other switches"): //var_dump($value); ?>
+            <?php if($value['product_catogery'] == "Other switches" && $value['is_delete'] == 0): //var_dump($value); ?>
               <tr class="Otherswitches">
             <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
-                <!-- <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td> -->
+                <td class=""><input type="number" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                 
                 
             </tr>
                   <?php endif; ?>
@@ -141,18 +185,18 @@ if (!isset($_SESSION['id'])) {
             
             <tr>
               <td>
-              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideSockets"><strong>-</strong></button>
-                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showSockets"><strong>+</strong></button>
+              <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideSockets">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showSockets">Show</button>
                             <strong>Sockets</strong>
                   
               </td>
             </tr>
             <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
-            <?php if($value['product_catogery'] == "Sockets"): //var_dump($value); ?>
+            <?php if($value['product_catogery'] == "Sockets" && $value['is_delete'] == 0): //var_dump($value); ?>
               <tr class="Sockets">
             <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
-                <!-- <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td> -->
+                <td class=""><input type="number" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                 
                 
             </tr>
                   <?php endif; ?>
@@ -160,17 +204,17 @@ if (!isset($_SESSION['id'])) {
             
             <tr>
               <td>
-              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideSwitchGears"><strong>-</strong></button>
-                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showSwitchGears"><strong>+</strong></button>
+              <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideSwitchGears">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showSwitchGears">Show</button>
                             <strong>Switch Gears</strong>
               </td>
             </tr>
             <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
-            <?php if($value['product_catogery'] == "Switch Gears"): //var_dump($value); ?>
+            <?php if($value['product_catogery'] == "Switch Gears" && $value['is_delete'] == 0): //var_dump($value); ?>
               <tr class="SwitchGears">
             <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
-                <!-- <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td> -->
+                <td class=""><input type="number" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" ></input></td>
+                 
                 
             </tr>
                   <?php endif; ?>
@@ -179,7 +223,7 @@ if (!isset($_SESSION['id'])) {
             
             <tr>
             <td colspan="6" style="text-align: right;">
-            <input type="submit" name="submitload" />
+            <input type="submit" name="submitload" class="btn btn-success btn-lg btn-ripple" onclick="return confirm('Are you sure you want to submit this details?');"/>
                 </td>
             
             </tr>

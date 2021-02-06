@@ -142,7 +142,7 @@ if (!isset($_SESSION['id'])) {
                           <span class="text-nowrap"><i class="fa fa-phone"></i> <?php echo $value['shop_contact']; ?></span>
                         </p>
                         <?php if ($_SESSION['usertype'] == '1'):  ?>
-                        <button type="submit" name="shopDel" class="btn btn-sm btn-danger">
+                        <button type="submit" name="shopDel" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this Shop?');">
                             <span class="btn-label"><i class="fa fa-trash"></i></span> Delete
                        </button>
                        <?php endif;  ?>

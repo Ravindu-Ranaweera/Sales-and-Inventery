@@ -44,7 +44,7 @@ if (!isset($_SESSION['id'])) {
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Product</li>
+                  <li class="breadcrumb-item active" aria-current="page">Stock</li>
                 </ol>
               </nav>
             </div>

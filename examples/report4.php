@@ -63,7 +63,8 @@ if (!isset($_SESSION['id'])) {
         <div class=" col ">
           <div class="card">
             <div class="card-header bg-transparent">
-              <h3 class="mb-0">Generate Report</h3>
+            <h2 >Financial Report: FROM <?php date_default_timezone_set("Asia/Kolkata"); $Due = date("Y-m-d"); $pre = $_GET['date'];  echo $pre." TO ".$Due; ?></h2>
+            <a href="printFin.php?date=<?php echo $_GET['date'] ?>" class="btn btn-danger btn-xl btn-ripple mx-6">Print PDF</a>
             </div>
             <div class="card-body">
               <?php 
@@ -125,18 +126,35 @@ if (!isset($_SESSION['id'])) {
               }else{
                  $row4['sum(profit)'] =NULL;
               }
+
+              $sql4= "SELECT product_id FROM place_order INNER JOIN order_item  ON  place_order.order_id=order_item.order_id WHERE order_date BETWEEN '{$pre}' AND '{$Due}' GROUP BY  product_id ORDER BY SUM(qty) DESC LIMIT 1";
+                // echo $sql4;
+                //   exit;
+              $result = mysqli_query($conn, $sql4);
+              $row6 = mysqli_fetch_assoc($result);
+              // var_dump($row6);
+              //   exit;
+              $sql4= "SELECT product_name FROM products WHERE product_id= '{$row6['product_id']}'";
+              $result = mysqli_query($conn, $sql4);
+              $row6 = mysqli_fetch_assoc($result);
+
+              $sql5= "SELECT product_id FROM place_order INNER JOIN order_item  ON  place_order.order_id=order_item.order_id WHERE order_date BETWEEN '{$pre}' AND '{$Due}' GROUP BY  product_id ORDER BY SUM(qty) ASC LIMIT 1";
+              // echo $sql4;
+              //   exit;
+            $result = mysqli_query($conn, $sql5);
+            $row7 = mysqli_fetch_assoc($result);
+            // var_dump($row6);
+            //   exit;
+            $sql5= "SELECT product_name FROM products WHERE product_id= '{$row7['product_id']}'";
+            $result = mysqli_query($conn, $sql5);
+            $row7 = mysqli_fetch_assoc($result);
+
               ?>
 
 <div id="page-wrap">
     
     <div class="table-responsive">
       <table class="table align-items-center table-dark table-flush">
-        <tr>
-            <th>#Title</th> 
-            <th>Amount</th>
-            
-        </tr>
-
         <tr>
           <td>Item Purches Value </td>
           <td>
@@ -169,6 +187,20 @@ if (!isset($_SESSION['id'])) {
           <td>Valuation Profit </td>
           <td>
           <?php if($row4['sum(profit)'] != NULL){ echo $row4['sum(profit)']; } else{ echo " 0.00";} ?> LKR
+          </td>
+        </tr>
+
+        <tr>
+          <td>Best Sell Product </td>
+          <td>
+          <?php echo $row6['product_name']; ?>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Least Sell Product  </td>
+          <td>
+          <?php echo $row7['product_name']; ?> 
           </td>
         </tr>
           

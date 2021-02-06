@@ -66,7 +66,7 @@ if (!isset($_SESSION['id'])) {
               <div class="container">
                   <form action="" method="post">
                     <input type="hidden" name="date" value=" <?php date_default_timezone_set("Asia/Kolkata"); echo date("Y-m-d");  ?>">
-                    <button type="submit" name="selectLoad" class="btn btn-dark" data-toggle="modal" data-target="#form">
+                    <button type="submit" name="selectLoad" class="btn btn-dark" onclick="return confirm('Are you sure you want to add new load?');">
                       <i class="fas fa-plus md-0"></i> ADD TODAY LOADINGS
                     </button> 
                   </form>
@@ -82,6 +82,7 @@ if (!isset($_SESSION['id'])) {
                   <tr class="pt-5">
                     <th scope="col" class="sort" data-sort="name">Date</th>
                     <th scope="col" data-sort="modify">Unload States</th>
+                    <th scope="col" data-sort="modify">Summery</th>
                   </tr>
                 </thead>
                 <tbody class="list">  
@@ -102,6 +103,11 @@ if (!isset($_SESSION['id'])) {
                         <span class="status">Unloaded</span>
                       </span>
                         <?php endif; ?>
+                    </td>
+                    <td>
+                    <a  href="dailyunloading.php?load_id=<?php echo $value['load_id']; ?>" class="btn btn-labeled btn-warning">
+                          <span class="btn-label"><i class="fa fa-file"></i></span> Summery
+                        </a>
                     </td>
                   </tr>
                   <?php endforeach; ?>

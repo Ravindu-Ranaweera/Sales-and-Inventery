@@ -68,7 +68,7 @@ if (!isset($_SESSION['id'])) {
                     <input type="hidden" name="order_id" value="<?php echo $_GET['order_id'];  ?>">
                     <input type="hidden" name="shop_id" value="<?php echo $_GET['shop_id'];  ?>">
                     <input type="hidden" name="date" value=" <?php date_default_timezone_set("Asia/Kolkata"); echo date("Y-m-d");  ?>">
-                    <button type="submit" name="selectReturn" class="btn btn-dark" data-toggle="modal" data-target="#form">
+                    <button type="submit" name="selectReturn" class="btn btn-dark"  onclick="return confirm('Are you sure you want to add return item?');">
                 <i class="fas fa-plus md-0"></i> ADD Return Item
                 </button> 
                   </form>

@@ -87,7 +87,7 @@ if (!isset($_SESSION['id'])) {
                                 <table>
                                 <tr>
                                     <td>
-                                    Chenith Enterprises<br>  Sunny Road<br> Ambalangoda, Sri Lanka
+                                    Chenith Enterprises<br>  Paragahathota<br> Ambalangoda, Sri Lanka
                                     </td>
 
                                     <td>
@@ -181,6 +181,7 @@ if (!isset($_SESSION['id'])) {
                                 if( $row2 != NULL){
                                    
                                     $ret =$row2['return_value'];
+                                    // echo $row2['return_value']; exit;
                                     
 
                                 }
@@ -190,7 +191,7 @@ if (!isset($_SESSION['id'])) {
 
                             <?php if($row2 != NULL): ?>
                             <?php
-                                $sql = "SELECT * FROM  return_item WHERE return_id = {$row2['return_id']} LIMIT 1";
+                                $sql = "SELECT * FROM  return_item WHERE return_id = {$row2['return_id']}";
                                 $return = mysqli_query($conn,$sql);
                                 if($return) {
                                     $ritem_details = mysqli_fetch_all($return,MYSQLI_ASSOC);
@@ -227,6 +228,9 @@ if (!isset($_SESSION['id'])) {
                             <td> -<?php echo $value['qty']*$row3['sell_unit_price']; ?> LKR </td>
                             </tr>
 
+                            
+                            <?php endforeach; ?>
+                            <?php endif; ?>
                             <tr class="total">
                             <td ></td>
                             <td ></td>
@@ -236,8 +240,6 @@ if (!isset($_SESSION['id'])) {
                             -<?php echo $ret;   ?> LKR 
                             </td>
                             </tr>
-                            <?php endforeach; ?>
-                            <?php endif; ?>
 
                             <tr class="total">
                             <td ><strong>Total Bill Amount:</strong></td>
@@ -321,7 +323,7 @@ if (!isset($_SESSION['id'])) {
 
 
                         </table>
-                        <a  href="paymentBill.php?order_id=<?php echo $value['order_id'];?>" class="btn btn-labeled btn-dark">
+                        <a  href="printBill.php?order_id=<?php echo $_GET['order_id'];?>" class="btn btn-labeled btn-dark">
                             <span class="btn-label"><i class="fa fa-trash"></i></span> Print Bill
                         </a>
                     </div>

@@ -63,7 +63,7 @@ if (!isset($_SESSION['id'])) {
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header border-bottom-0">
-            <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -88,7 +88,7 @@ if (!isset($_SESSION['id'])) {
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header border-bottom-0">
-            <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -109,11 +109,36 @@ if (!isset($_SESSION['id'])) {
       </div>
     </div>
 
+    <div class="modal fade" id="form5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header border-bottom-0">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="" method="post" >
+            <div class="modal-body">
+              <div class="form-group">
+                <label >Select Previous Date</label>
+                <input type="date" class="form-control" name="previousDate" aria-describedby="emailHelp" required>
+              </div>
+            </div>
+            
+            <div class="modal-footer border-top-0 d-flex justify-content-center">
+              <button type="submit" name ="findInvent" class="btn btn-success">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <div class="modal fade" id="form0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header border-bottom-0">
-            <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -144,7 +169,7 @@ if (!isset($_SESSION['id'])) {
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header border-bottom-0">
-            <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -204,6 +229,14 @@ if (!isset($_SESSION['id'])) {
               <div class="card col-lg-6 col-md-12">
                   <h2  href="dailyStock.php" class="h2 border border-primary rounded p-3 text-center" ><i class="fas fa-file-pdf text-danger"></i> Shop Report </h2>
                   <button type="button" class="btn btn-labeled btn-success" data-toggle="modal" data-target="#form2">
+                      <span class="btn-label"><i class="fas fa-cog"></i></span> Genarate Report
+                  </button>
+                  
+              </div>
+
+              <div class="card col-lg-6 col-md-12">
+                  <h2  href="dailyStock.php" class="h2 border border-primary rounded p-3 text-center" ><i class="fas fa-file-pdf text-danger"></i> Inventory Report </h2>
+                  <button type="button" class="btn btn-labeled btn-success" data-toggle="modal" data-target="#form5">
                       <span class="btn-label"><i class="fas fa-cog"></i></span> Genarate Report
                   </button>
                   

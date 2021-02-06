@@ -23,6 +23,14 @@ if (isset($_POST['signup-btn'])){
 
 	if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 		$errors['email']= "Email adress is invalid";
+	}else{
+		$emailQuery = "SELECT * FROM user_login WHERE user_email='{$email}' LIMIT 1";
+		$userCount = mysqli_query($conn, $emailQuery);
+	
+		if(mysqli_num_rows($userCount) > 0){
+			$errors['email']= "email exists";
+		}
+		
 	}
 	if(empty($email)){
 		$errors['email']="email required";
@@ -38,13 +46,7 @@ if (isset($_POST['signup-btn'])){
 		$errors['password']="password not match";
 	}
 
-	$emailQuery = "SELECT * FROM user_login WHERE email=? LIMIT 1";
-	$userCount = mysqli_query($conn, $emailQuery);
-
-	if(mysqli_num_rows($userCount) > 0){
-		$errors['email']= "email exists";
-	}
-
+	
 	if(count($errors)== 0){
 		$password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -68,7 +70,7 @@ if (isset($_POST['signup-btn'])){
 			 
 
 		}else{
-			$errors['db_error']= "Database error: faild to register";
+			header('location: register.php');
 		}
 	}
 
@@ -79,7 +81,7 @@ if (isset($_POST['signup-btn'])){
 if (isset($_POST['signin-btn'])){
 	$email = $_POST['email'];
 	$password = $_POST['password'];
-
+	$errors =array();
 	
 
 	if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -118,6 +120,8 @@ if (isset($_POST['signin-btn'])){
 		}else{
 			$errors['login_fail']= "wrong credentials";
 		}
+	}else{
+		header('location: index.php');
 	}
 
 }

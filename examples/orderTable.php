@@ -125,11 +125,20 @@ $(document).ready(function(){
               <h3 class="mb-0">Stock Manage</h3>
             </div>
             <div class="card-body">
+            <?php if(isset($_GET['message'])): ?>
+              <div class="alert alert-dismissible alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <h4 class="alert-heading">Warning!</h4>
+                <p class="mb-0">Please Enter The Correct Quentity Value</a>.</p>
+              </div>
+					    <?php endif; ?>
 
             <div id="table-responsive">
 
               <form action="" method="post">
-          
+
+              
+
                 <table id="order-table">
                     <tr>
                         <th>Product Name</th> 
@@ -151,7 +160,7 @@ $(document).ready(function(){
                       </tr>
                       
                       <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
-                      <?php if($value['product_catogery'] == "Accessories"): //var_dump($value); ?>
+                      <?php if($value['product_catogery'] == "Accessories" && $value['is_delete'] == 0): //var_dump($value); ?>
                       <tr class="Accessories">
                       <td class="product-title"><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
                           <td class=""><?php echo $value['available_qty']; ?> </td>
@@ -172,7 +181,7 @@ $(document).ready(function(){
                       </tr>
                       
                       <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
-                      <?php if($value['product_catogery'] == "Gang Switches"): //var_dump($value); ?>
+                      <?php if($value['product_catogery'] == "Gang Switches" && $value['is_delete'] == 0): //var_dump($value); ?>
                       <tr class="GangSwitches">
                       <td class="product-title"><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
                        <td class=""><?php echo $value['available_qty']; ?> </td>
@@ -193,7 +202,7 @@ $(document).ready(function(){
                       </td>
                       </tr>
                       <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
-                      <?php if($value['product_catogery'] == "Other switches"): //var_dump($value); ?>
+                      <?php if($value['product_catogery'] == "Other switches" && $value['is_delete'] == 0): //var_dump($value); ?>
                       <tr class="Otherswitches">
                       
                       <td class="product-title"><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
@@ -215,7 +224,7 @@ $(document).ready(function(){
                         </td>
                       </tr>
                       <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
-                      <?php if($value['product_catogery'] == "Sockets"): //var_dump($value); ?>
+                      <?php if($value['product_catogery'] == "Sockets" && $value['is_delete'] == 0): //var_dump($value); ?>
                       <tr class="Sockets">
                       <td class="product-title"><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
                       <td class=""><?php echo $value['available_qty']; ?> </td>
@@ -236,7 +245,7 @@ $(document).ready(function(){
                         </td>
                       </tr>
                       <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
-                      <?php if($value['product_catogery'] == "Switch Gears"): //var_dump($value); ?>
+                      <?php if($value['product_catogery'] == "Switch Gears" && $value['is_delete'] == 0): //var_dump($value); ?>
                       <tr class="SwitchGears">
                           <td class="product-title"><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
                           <td class=""><?php echo $value['available_qty']; ?> </td>

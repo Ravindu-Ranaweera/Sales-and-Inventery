@@ -109,7 +109,7 @@ if (!isset($_SESSION['id'])) {
                     <input type="hidden" name="ref_id" value="<?php echo $_SESSION['id'];  ?>">
                     <input type="hidden" name="date" value=" <?php date_default_timezone_set("Asia/Kolkata"); echo date("Y-m-d");  ?>">
                     <input type="hidden" name="time" value=" <?php date_default_timezone_set("Asia/Kolkata"); echo date("h:i:s");  ?>">
-                    <button type="submit" name="selectOrder" class="btn btn-dark" data-toggle="modal" data-target="#form">
+                    <button type="submit" name="selectOrder" class="btn btn-dark" onclick="return confirm('Are you sure you want to Create new Order?');">
                 <i class="fas fa-plus md-0"></i> ADD NEW ORDER
                 </button> 
                   </form>
@@ -214,7 +214,7 @@ if (!isset($_SESSION['id'])) {
                       </span>
                     </td> -->
                     <td class="">
-                      <button type="submit" name="orderItemDel" class="btn btn-labeled btn-danger">
+                      <button type="submit" name="orderItemDel" class="btn btn-labeled btn-danger" onclick="return confirm('Are you sure you want to delete this Order?');">
                             <span class="btn-label"><i class="fa fa-trash"></i></span> Delete
                       </button>
                       <a href="shopOrderView.php?order_id=<?php echo $value['order_id'];?>&shop_id=<?php echo $_GET['shop_id'];  ?>" type="button" class="btn btn-labeled btn-success">

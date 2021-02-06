@@ -12,11 +12,9 @@ if (!isset($_SESSION['id'])) {
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-  <meta name="author" content="Creative Tim">
-  <title>Chenith Enterprises</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<title>Chenith Enterprises</title>
   <!-- Favicon -->
   <link rel="icon" href="../assets/img/brand/favicon.png" type="image/png">
   <!-- Fonts -->
@@ -27,9 +25,62 @@ if (!isset($_SESSION['id'])) {
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="../assets/css/argon.css?v=1.2.0" type="text/css">
-</head>
+	
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- END FOXYCART FILES -->
 
+    
+</head>
 <body>
+<script>
+  $(document).ready(function(){
+    $("#hideAccessories").click(function(){
+      $(".Accessories").hide();
+    });
+    $("#showAccessories").click(function(){
+      $(".Accessories").show();
+    });
+  });
+
+  $(document).ready(function(){
+    $("#hideGangSwitches").click(function(){
+      $(".GangSwitches").hide();
+    });
+    $("#showGangSwitches").click(function(){
+      $(".GangSwitches").show();
+    });
+  });
+
+  $(document).ready(function(){
+    $("#hideOtherswitches").click(function(){
+      $(".Otherswitches").hide();
+    });
+    $("#showOtherswitches").click(function(){
+      $(".Otherswitches").show();
+    });
+  });
+
+  $(document).ready(function(){
+    $("#hideSockets").click(function(){
+      $(".Sockets").hide();
+    });
+    $("#showSockets").click(function(){
+      $(".Sockets").show();
+    });
+  });
+
+  $(document).ready(function(){
+    $("#hideSwitchGears").click(function(){
+      $(".SwitchGears").hide();
+    });
+    $("#showSwitchGears").click(function(){
+      $(".SwitchGears").show();
+    });
+  });
+</script>
+
   <!-- Sidenav -->
   <?php include('sidebar.php'); ?>
   <!-- Main content -->
@@ -62,9 +113,7 @@ if (!isset($_SESSION['id'])) {
       <div class="row justify-content-center">
         <div class=" col ">
           <div class="card">
-            <div class="card-header bg-transparent">
-              <h3 class="mb-0">Generate Report</h3>
-            </div>
+           
             <div class="card-body">
               <?php 
               date_default_timezone_set("Asia/Kolkata"); 
@@ -92,8 +141,11 @@ if (!isset($_SESSION['id'])) {
                 
               
               ?>
+              <a href="printItem.php?date=<?php echo $_GET['date'] ?>" class="btn btn-danger btn-xl btn-ripple mx-6">Print PDF</a>
 <div id="page-wrap">
-    
+
+   
+
     <div class="table-responsive">
       <table class="table align-items-center table-dark table-flush">
         <tr>
@@ -104,16 +156,16 @@ if (!isset($_SESSION['id'])) {
         </tr>
           <tr>
             <td>
-                <button type="button" id="hid">Hide</button>
-                <button type="button" id="sho">Show</button>
-                Accessories
+            <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideAccessories">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showAccessories">Show</button>
+                          <strong>Accessories</strong> 
                 
             </td>
           </tr>
           
           <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
           <?php if($value['product_catogery'] == "Accessories"): //var_dump($value); ?>
-          <tr class="o">
+            <tr class="Accessories">
               <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
               <td class="text-center">
                 <?php $sql = "SELECT sum(qty) FROM order_item WHERE order_id in ('$ids') And product_id= '{$value['product_id']}'";
@@ -142,15 +194,15 @@ if (!isset($_SESSION['id'])) {
                 <?php endforeach; ?>
           <tr>
             <td>
-                <button id="hide">Hide</button>
-                <button id="show">Show</button>
-                Gang Switches
+            <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideGangSwitches">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showGangSwitches">Show</button>
+                            <strong>Gang Switches</strong>
             </td>
           </tr>
           
           <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
           <?php if($value['product_catogery'] == "Gang Switches"): //var_dump($value); ?>
-          <tr class="odd">
+            <tr class="GangSwitches">
           <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
           <td class="text-center">
                 <?php $sql = "SELECT sum(qty) FROM order_item WHERE order_id in ('$ids') And product_id= '{$value['product_id']}'";
@@ -180,14 +232,14 @@ if (!isset($_SESSION['id'])) {
 
           <tr>
           <td>
-              <button id="hide">Hide</button>
-              <button id="show">Show</button> 
-              Other switches
+          <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideOtherswitches">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showOtherswitches">Show</button>
+                          <strong>Other switches</strong>
           </td>
           </tr>
           <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
           <?php if($value['product_catogery'] == "Other switches"): //var_dump($value); ?>
-          <tr class="odd">
+            <tr class="Otherswitches">
           <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
           <td class="text-center">
                 <?php $sql = "SELECT sum(qty) FROM order_item WHERE order_id in ('$ids') And product_id= '{$value['product_id']}'";
@@ -217,14 +269,14 @@ if (!isset($_SESSION['id'])) {
           
           <tr>
             <td>
-                <button id="hide">Hide</button>
-                <button id="show">Show</button>
-                Sockets
+            <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideSockets">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showSockets">Show</button>
+                            <strong>Sockets</strong>
             </td>
           </tr>
           <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
           <?php if($value['product_catogery'] == "Sockets"): //var_dump($value); ?>
-          <tr class="odd">
+            <tr class="Sockets">
           <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
           <td class="text-center">
                 <?php $sql = "SELECT sum(qty) FROM order_item WHERE order_id in ('$ids') And product_id= '{$value['product_id']}'";
@@ -254,14 +306,14 @@ if (!isset($_SESSION['id'])) {
 
                 <tr>
             <td>
-            <button id="hide">Hide</button>
-                <button id="show">Show</button>
-                Switch Gears
+            <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideSwitchGears">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showSwitchGears">Show</button>
+                            <strong>Switch Gears</strong>
             </td>
           </tr>
           <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
           <?php if($value['product_catogery'] == "Switch Gears"): //var_dump($value); ?>
-          <tr class="odd">
+            <tr class="SwitchGears">
           <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
           <td class="text-center">
                 <?php $sql = "SELECT sum(qty) FROM order_item WHERE order_id in ('$ids') And product_id= '{$value['product_id']}'";

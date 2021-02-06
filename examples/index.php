@@ -58,6 +58,7 @@
               <h2>Sign Up With Credentials</h2>
               </div>
               <form role="form" action="index.php" method="post">
+              
                   <div class="form-group mb-3">
                     <div
                       class="input-group input-group-merge input-group-alternative"
@@ -101,7 +102,7 @@
                     />
                   </div>
                   <div class="text-center">
-                    <a href="#" class=""><small>Forgot password?</small></a>
+                    <!-- <a href="#" class=""><small>Forgot password?</small></a> -->
                   </div>
                   <div class="text-center">
                     <button type="submit" name="signin-btn" class="btn btn-primary my-4">

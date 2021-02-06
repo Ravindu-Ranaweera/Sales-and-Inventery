@@ -169,7 +169,7 @@ if (!isset($_SESSION['id'])) {
                                     <hr>
                                     <?php if ($_SESSION['usertype'] == '1'):  ?>
                                     <button type="button" class="btn btn-primary btn-md mr-1 mb-2" data-toggle="modal" data-target="#form">Update</button>
-                                    <button type="submit" name="productDel" class="btn btn-danger btn-md mr-1 mb-2">Delete</button>
+                                    <button type="submit" name="productDel" class="btn btn-danger btn-md mr-1 mb-2" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                                     <?php endif;  ?>
                                   </div>
                                 </div>

@@ -38,13 +38,24 @@ if (isset($_POST['findProduct'])){
 
 
   
-if (isset($_POST['findFin'])){
+    if (isset($_POST['findFin'])){
     
-  // var_dump($_POST);
-  // exit;
-      
-      $pre = $_POST['previousDate'];  
+      // var_dump($_POST);
+      // exit;
           
-      header('location: report4.php?date='.$_POST['previousDate']);
-      
-  }
+          $pre = $_POST['previousDate'];  
+              
+          header('location: report4.php?date='.$_POST['previousDate']);
+          
+      }
+
+      if (isset($_POST['findInvent'])){
+    
+        // var_dump($_POST);
+        // exit;
+            
+            $pre = $_POST['previousDate'];  
+                
+            header('location: printInvent.php?date='.$_POST['previousDate']);
+            
+        }

@@ -1,4 +1,5 @@
 <?php
+
 if (!isset($_SESSION['id'])) {
   session_start();
 }
@@ -49,15 +50,16 @@ if (isset($_POST['selectOrder'])){
 
 
 // submit order
-
+$errors =array();
+// var_dump($errors); exit;
+// $errors['er']= "email exists";
 if (isset($_POST['submitOrderItem'])){
    
     
     $str = $_POST['subTotal'];
     $newStr = str_replace(',', '', $str); // If you want it to be "185345321"
     $num = intval($newStr); // If you want it to be a number 185345321
-//     echo '<pre>' , var_dump($num) , '</pre>';
-//    exit;
+    
    $count = 0; 
    $sql = "SELECT * FROM place_order ORDER BY order_id DESC LIMIT 1";
    $result = mysqli_query($conn, $sql);
@@ -66,6 +68,38 @@ if (isset($_POST['submitOrderItem'])){
    $shop_id = $row['shop_id'];
 
     
+    foreach ($_POST as $key => $value) {
+        // echo '<pre>' , var_dump($value) , '</pre>';
+
+        
+        $count++;
+        if ($count == 1) {
+            $product_id = $value;
+        }
+        
+        if ($count==2) {
+            if ($value != "") {
+                foreach($product_details as $key2 => $value2){
+                    
+                    if ($product_id == $value2['product_id'] && $value > $value2['available_qty']) {
+                        // $errors['password']="password required capita simple 8 letter";
+                        // var_dump($errors); exit;
+                        header('location: orderTable.php?message=1');
+                        exit;
+                    }
+        
+                }
+            }else{
+                $count =0;
+            }
+        }
+        
+        
+        
+    }
+
+       
+       $count=0;
     foreach ($_POST as $key => $value) {
         $count++;
         if ($count == 1) {

@@ -38,12 +38,12 @@ if (!isset($_SESSION['id'])) {
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Product</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Stock Manage</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Product</li>
+                  <li class="breadcrumb-item active" aria-current="page">Stock</li>
                 </ol>
               </nav>
             </div>
@@ -86,10 +86,10 @@ if (!isset($_SESSION['id'])) {
             <label >Recived Date</label>
             <input type="date" name="rdate" class="form-control"  aria-describedby="emailHelp"  required>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label >Bill Amount (LKR)</label>
             <input type="text" name="bill" class="form-control" aria-describedby="emailHelp"  required>
-          </div>
+          </div> -->
           <div class="form-group">
             <label >Special Note</label>
             <input type="text" name="note" class="form-control" aria-describedby="emailHelp"  required>
@@ -100,7 +100,7 @@ if (!isset($_SESSION['id'])) {
           
           </div>
         <div class="modal-footer border-top-0 d-flex justify-content-center">
-          <button type="submit" name="addStock" class="btn btn-success">Add Stock Items</button>
+          <button type="submit" name="addStock" class="btn btn-success" onclick="return confirm('Are you sure you want to add this stock?');">Add Stock Items</button>
         </div>
       </form>
     </div>
@@ -155,7 +155,7 @@ if (!isset($_SESSION['id'])) {
                         <a href="viewStock.php?sup_id=<?php echo $value['stock_id']; ?>" class="btn btn-labeled btn-success">
                           <span class="btn-label"><i class="fa fa-eye"></i> View</span>
                         </a>
-                        <button type="submit" name="deleteOrder" class="btn btn-labeled btn-danger">
+                        <button type="submit" name="deleteOrder" class="btn btn-labeled btn-danger" onclick="return confirm('Are you sure you want to delete this stock record?');"> 
                           <span class="btn-label"><i class="fa fa-trash"></i></span>
                         </button>
                     </td>

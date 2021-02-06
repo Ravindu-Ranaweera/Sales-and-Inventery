@@ -107,7 +107,7 @@ if (!isset($_SESSION['id'])) {
         </div>
         
         <div class="modal-footer border-top-0 d-flex justify-content-center">
-          <button type="submit" name ="addProduct" class="btn btn-success">Submit</button>
+          <button type="submit" name ="addProduct" class="btn btn-success" onclick="return confirm('Are you sure you want to add this item?');">Submit</button>
         </div>
       </form>
     </div>

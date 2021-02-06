@@ -69,7 +69,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" name="username" placeholder="Name" type="text">
+                    <input class="form-control" name="username" placeholder="Name" type="text" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -77,7 +77,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" name="email" placeholder="Email" type="email">
+                    <input class="form-control" name="email" placeholder="Email" type="email" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -85,7 +85,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" name="password" placeholder="Password" type="password">
+                    <input class="form-control" name="password" placeholder="Password" type="password" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -93,12 +93,12 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" name="passwordConf" placeholder="Confirm Password" type="password">
+                    <input class="form-control" name="passwordConf" placeholder="Confirm Password" type="password" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group-prepend"> 
-                    <select name="usertype" class="form-control" selected="" >
+                    <select name="usertype" class="form-control" selected="" required>
                       <option value="1"  style="border: none">Admin</option> 
                       <option value="2"  style="border: none">Stock Keeper </option> 
                       <option value="3"  style="border: none">Sales Ref</option> 

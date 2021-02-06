@@ -34,7 +34,52 @@ if (!isset($_SESSION['id'])) {
 <body>
 
 
+<script>
+  $(document).ready(function(){
+    $("#hideAccessories").click(function(){
+      $(".Accessories").hide();
+    });
+    $("#showAccessories").click(function(){
+      $(".Accessories").show();
+    });
+  });
 
+  $(document).ready(function(){
+    $("#hideGangSwitches").click(function(){
+      $(".GangSwitches").hide();
+    });
+    $("#showGangSwitches").click(function(){
+      $(".GangSwitches").show();
+    });
+  });
+
+  $(document).ready(function(){
+    $("#hideOtherswitches").click(function(){
+      $(".Otherswitches").hide();
+    });
+    $("#showOtherswitches").click(function(){
+      $(".Otherswitches").show();
+    });
+  });
+
+  $(document).ready(function(){
+    $("#hideSockets").click(function(){
+      $(".Sockets").hide();
+    });
+    $("#showSockets").click(function(){
+      $(".Sockets").show();
+    });
+  });
+
+  $(document).ready(function(){
+    $("#hideSwitchGears").click(function(){
+      $(".SwitchGears").hide();
+    });
+    $("#showSwitchGears").click(function(){
+      $(".SwitchGears").show();
+    });
+  });
+</script>
 
 <!-- Sidenav -->
 <?php include('sidebar.php'); ?>
@@ -92,8 +137,8 @@ if (!isset($_SESSION['id'])) {
             ?>
             <tr>
               <td>
-              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideAccessories"><strong>-</strong></button>
-                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showAccessories"><strong>+</strong></button>
+              <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideAccessories">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showAccessories">Show</button>
                           <strong>Accessories</strong>  
                   
               </td>
@@ -104,7 +149,7 @@ if (!isset($_SESSION['id'])) {
             <?php if($value['product_catogery'] == "Accessories" && ($value['product_id']== $value1['product_id'])): //var_dump($value); ?>
             <tr class="Accessories">
                 <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value1['load_qty']; ?>"></input></td>
+                <td class=""><input type="number" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value1['load_qty']; ?>"></input></td>
                 
             </tr>
             <?php endif; ?>
@@ -113,8 +158,8 @@ if (!isset($_SESSION['id'])) {
 
             <tr>
               <td>
-              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideGangSwitches"><strong>-</strong></button>
-                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showGangSwitches"><strong>+</strong></button>
+              <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideGangSwitches">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showGangSwitches">Show</button>
                             <strong>Gang Switches</strong>
                   
               </td>
@@ -125,7 +170,7 @@ if (!isset($_SESSION['id'])) {
             <?php if($value['product_catogery'] == "Gang Switches" && ($value['product_id']== $value1['product_id'])): //var_dump($value); ?>
               <tr class="GangSwitches">
                 <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value1['load_qty']; ?>"></input></td>
+                <td class=""><input type="number" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value1['load_qty']; ?>"></input></td>
                 
             </tr>
             <?php endif; ?>
@@ -134,8 +179,8 @@ if (!isset($_SESSION['id'])) {
 
             <tr>
               <td>
-              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideOtherswitches"><strong>-</strong></button>
-                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showOtherswitches"><strong>+</strong></button>
+              <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideOtherswitches">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showOtherswitches">Show</button>
                           <strong>Other switches</strong>
                   
               </td>
@@ -146,7 +191,7 @@ if (!isset($_SESSION['id'])) {
             <?php if($value['product_catogery'] == "Other switches" && ($value['product_id']== $value1['product_id'])): //var_dump($value); ?>
               <tr class="Otherswitches">
                 <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value1['load_qty']; ?>"></input></td>
+                <td class=""><input type="number" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value1['load_qty']; ?>"></input></td>
                 
             </tr>
             <?php endif; ?>
@@ -155,8 +200,8 @@ if (!isset($_SESSION['id'])) {
 
             <tr>
               <td>
-              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideSockets"><strong>-</strong></button>
-                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showSockets"><strong>+</strong></button>
+              <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideSockets">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showSockets">Show</button>
                             <strong>Sockets</strong>
                   
               </td>
@@ -167,7 +212,7 @@ if (!isset($_SESSION['id'])) {
             <?php if($value['product_catogery'] == "Sockets" && ($value['product_id']== $value1['product_id'])): //var_dump($value); ?>
               <tr class="Sockets">
                 <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value1['load_qty']; ?>"></input></td>
+                <td class=""><input type="number" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value1['load_qty']; ?>"></input></td>
                 
             </tr>
             <?php endif; ?>
@@ -176,8 +221,8 @@ if (!isset($_SESSION['id'])) {
 
             <tr>
               <td>
-              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="hideSwitchGears"><strong>-</strong></button>
-                        <button type="button" class="btn btn-outline-primary btn-sm px-3" id="showSwitchGears"><strong>+</strong></button>
+              <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideSwitchGears">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showSwitchGears">Show</button>
                             <strong>Switch Gears</strong>
                   
               </td>
@@ -188,7 +233,7 @@ if (!isset($_SESSION['id'])) {
             <?php if($value['product_catogery'] == "Switch Gears" && ($value['product_id']== $value1['product_id'])): //var_dump($value); ?>
               <tr class="SwitchGears">
                 <td class=""><?php echo $value['product_name']; ?><input type="hidden" name="<?php echo $value['product_name']; ?>" value="<?php echo $value['product_id']; ?>"></input></td>
-                <td class=""><input type="text" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value1['load_qty']; ?>"></input></td>
+                <td class=""><input type="number" name="<?php echo 'qty-'.$value['product_name']; ?>" class="form-control " id="sparkle-num-pallets" value="<?php echo $value1['load_qty']; ?>"></input></td>
                 
             </tr>
             <?php endif; ?>
@@ -198,7 +243,7 @@ if (!isset($_SESSION['id'])) {
             
             <tr>
             <td colspan="6" style="text-align: right;">
-            <input type="submit" name="submitunload" />
+            <input type="submit" name="submitunload" class="btn btn-success btn-lg btn-ripple" onclick="return confirm('Are you sure you want to submit this details?');"/>
                 </td>
             
             </tr>
