@@ -62,7 +62,7 @@
             <?php if ($_SESSION['usertype'] == '1' || ($_SESSION['usertype'] == '3')):  ?>
             <li class="nav-item">
               <a class="nav-link" href="paymentShop.php">
-                      <i class="ni ni-credit-card"></i>
+                      <i class="ni ni-credit-card text-green"></i>
       
                 <span class="nav-link-text">Payments</span>
               </a>

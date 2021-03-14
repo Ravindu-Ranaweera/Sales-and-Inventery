@@ -10,8 +10,14 @@ if (isset($_POST['findSale'])){
 // exit;
     
     $pre = $_POST['previousDate'];  
-        
-    header('location: report1.php?date='.$_POST['previousDate']);
+    date_default_timezone_set("Asia/Kolkata"); 
+    $Due = date("Y-m-d");
+    if ( $pre < $Due) {
+      header('location: report1.php?date='.$_POST['previousDate']);
+    }else{
+      header('location: report.php?');
+    }
+    
     
 }
 
@@ -42,10 +48,15 @@ if (isset($_POST['findProduct'])){
     
       // var_dump($_POST);
       // exit;
-          
-          $pre = $_POST['previousDate'];  
-              
+
+        $pre = $_POST['previousDate'];  
+        date_default_timezone_set("Asia/Kolkata"); 
+        $Due = date("Y-m-d");
+        if ( $pre < $Due) {
           header('location: report4.php?date='.$_POST['previousDate']);
+        }else{
+          header('location: report.php?');
+        }
           
       }
 
@@ -53,9 +64,28 @@ if (isset($_POST['findProduct'])){
     
         // var_dump($_POST);
         // exit;
-            
             $pre = $_POST['previousDate'];  
-                
-            header('location: printInvent.php?date='.$_POST['previousDate']);
-            
+        date_default_timezone_set("Asia/Kolkata"); 
+        $Due = date("Y-m-d");
+        if ( $pre < $Due) {
+          header('location: printInvent.php?date='.$_POST['previousDate']);
+
+        }else{
+          header('location: report.php?');
         }
+        }
+
+        if (isset($_POST['findReturn'])){
+    
+          // var_dump($_POST);
+          // exit;
+          $pre = $_POST['previousDate'];  
+          date_default_timezone_set("Asia/Kolkata"); 
+          $Due = date("Y-m-d");
+          if ( $pre < $Due) {
+            header('location: report5.php?date='.$_POST['previousDate']);
+  
+          }else{
+            header('location: report.php?');
+          }
+          }

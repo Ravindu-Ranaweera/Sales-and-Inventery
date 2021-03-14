@@ -131,12 +131,15 @@ if (!isset($_SESSION['id'])) {
                 // echo $sql4;
                 //   exit;
               $result = mysqli_query($conn, $sql4);
-              $row6 = mysqli_fetch_assoc($result);
-              // var_dump($row6);
+              $row8 = mysqli_fetch_assoc($result);
+              // var_dump($row8);
               //   exit;
-              $sql4= "SELECT product_name FROM products WHERE product_id= '{$row6['product_id']}'";
-              $result = mysqli_query($conn, $sql4);
-              $row6 = mysqli_fetch_assoc($result);
+              if ($row8!= NULL) {
+                $sql4= "SELECT product_name FROM products WHERE product_id= '{$row8['product_id']}'";
+                $result = mysqli_query($conn, $sql4);
+                $row6= mysqli_fetch_assoc($result);
+              }
+              
 
               $sql5= "SELECT product_id FROM place_order INNER JOIN order_item  ON  place_order.order_id=order_item.order_id WHERE order_date BETWEEN '{$pre}' AND '{$Due}' GROUP BY  product_id ORDER BY SUM(qty) ASC LIMIT 1";
               // echo $sql4;
@@ -145,9 +148,12 @@ if (!isset($_SESSION['id'])) {
             $row7 = mysqli_fetch_assoc($result);
             // var_dump($row6);
             //   exit;
-            $sql5= "SELECT product_name FROM products WHERE product_id= '{$row7['product_id']}'";
+            if ($row7!=NULL) {
+              $sql5= "SELECT product_name FROM products WHERE product_id= '{$row7['product_id']}'";
             $result = mysqli_query($conn, $sql5);
             $row7 = mysqli_fetch_assoc($result);
+            }
+            
 
               ?>
 
@@ -193,14 +199,22 @@ if (!isset($_SESSION['id'])) {
         <tr>
           <td>Best Sell Product </td>
           <td>
-          <?php echo $row6['product_name']; ?>
+          <?php
+          if ($row8!= NULL) {
+            echo $row6['product_name']; 
+          }
+          ?>
           </td>
         </tr>
 
         <tr>
           <td>Least Sell Product  </td>
           <td>
-          <?php echo $row7['product_name']; ?> 
+          <?php 
+          if ($row7!= NULL) {
+            echo $row7['product_name'];
+          }
+           ?> 
           </td>
         </tr>
           

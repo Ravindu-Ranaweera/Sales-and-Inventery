@@ -54,7 +54,8 @@ $errors =array();
 // var_dump($errors); exit;
 // $errors['er']= "email exists";
 if (isset($_POST['submitOrderItem'])){
-   
+//    var_dump($_POST);
+//     exit;
     
     $str = $_POST['subTotal'];
     $newStr = str_replace(',', '', $str); // If you want it to be "185345321"

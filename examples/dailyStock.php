@@ -105,9 +105,11 @@ if (!isset($_SESSION['id'])) {
                         <?php endif; ?>
                     </td>
                     <td>
-                    <a  href="dailyunloading.php?load_id=<?php echo $value['load_id']; ?>" class="btn btn-labeled btn-warning">
+                    <?php if($value['is_unload'] == '1'): ?>
+                    <a  href="loadingSummery.php?load_id=<?php echo $value['load_id']; ?>" class="btn btn-labeled btn-warning">
                           <span class="btn-label"><i class="fa fa-file"></i></span> Summery
                         </a>
+                        <?php endif; ?>
                     </td>
                   </tr>
                   <?php endforeach; ?>

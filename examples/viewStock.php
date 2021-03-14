@@ -22,10 +22,60 @@ if (!isset($_SESSION['id'])) {
   <link rel="stylesheet" href="../assets/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <!-- Argon CSS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <link rel="stylesheet" href="../assets/css/argon.css?v=1.2.0" type="text/css">
 </head>
 
 <body>
+
+<script>
+  $(document).ready(function(){
+    $("#hideAccessories").click(function(){
+      $(".Accessories").hide();
+    });
+    $("#showAccessories").click(function(){
+      $(".Accessories").show();
+    });
+  });
+
+  $(document).ready(function(){
+    $("#hideGangSwitches").click(function(){
+      $(".GangSwitches").hide();
+    });
+    $("#showGangSwitches").click(function(){
+      $(".GangSwitches").show();
+    });
+  });
+
+  $(document).ready(function(){
+    $("#hideOtherswitches").click(function(){
+      $(".Otherswitches").hide();
+    });
+    $("#showOtherswitches").click(function(){
+      $(".Otherswitches").show();
+    });
+  });
+
+  $(document).ready(function(){
+    $("#hideSockets").click(function(){
+      $(".Sockets").hide();
+    });
+    $("#showSockets").click(function(){
+      $(".Sockets").show();
+    });
+  });
+
+  $(document).ready(function(){
+    $("#hideSwitchGears").click(function(){
+      $(".SwitchGears").hide();
+    });
+    $("#showSwitchGears").click(function(){
+      $(".SwitchGears").show();
+    });
+  });
+</script>
+
   <!-- Sidenav -->
   <?php include('sidebar.php'); ?>
   <!-- Main content -->
@@ -68,47 +118,6 @@ if (!isset($_SESSION['id'])) {
   </button>   -->
 </div>
 
-
-<!-- <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header border-bottom-0">
-        <h5 class="modal-title" id="exampleModalLabel">Add New Stock</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form method="post">
-        <div class="modal-body">
-          <div class="form-group">
-            <label >Invoice No</label>
-            <input type="text" name="invoice" class="form-control"  aria-describedby="emailHelp" required >
-          </div>
-          <div class="form-group">
-            <label >Recived Date</label>
-            <input type="date" name="rdate" class="form-control"  aria-describedby="emailHelp"  required>
-          </div>
-          <div class="form-group">
-            <label >Bill Amount (LKR)</label>
-            <input type="text" name="bill" class="form-control" aria-describedby="emailHelp"  required>
-          </div>
-          <div class="form-group">
-            <label >Special Note</label>
-            <input type="text" name="note" class="form-control" aria-describedby="emailHelp"  required>
-          </div>
-          <div class="form-group">
-            <input type="hidden" name="sk" class="form-control"  aria-describedby="emailHelp" value="<?php echo $_SESSION['id']; ?>" >
-          </div>
-          
-          </div>
-        <div class="modal-footer border-top-0 d-flex justify-content-center">
-          <button type="submit" name="addStock" class="btn btn-success">Add Stock Items</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div> -->
-
 <?php
                                 
 
@@ -133,17 +142,17 @@ if (!isset($_SESSION['id'])) {
                         
                     </tr>
                       <tr>
-                        <td>
-                            <button type="button" id="hid">Hide</button>
-                            <button type="button" id="sho">Show</button>
-                            Accessories
-                            
-                        </td>
+                      <td>
+            <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideAccessories">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showAccessories">Show</button>
+                          <strong>Accessories</strong> 
+                
+            </td>
                       </tr>
                       
                       <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
                       <?php if($value['product_catogery'] == "Accessories"): //var_dump($value); ?>
-                      <tr class="o">
+                        <tr class="Accessories">
                          
                             <?php foreach($supitem_details as $key=>$value1): //var_dump($value); ?>
                             <?php if($value['product_id'] == $value1['product_id']): //var_dump($value); ?>
@@ -166,16 +175,16 @@ if (!isset($_SESSION['id'])) {
                             <?php endif; ?>
                             <?php endforeach; ?>
                       <tr>
-                        <td>
-                            <button id="hide">Hide</button>
-                            <button id="show">Show</button>
-                            Gang Switches
-                        </td>
+                      <td>
+            <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideGangSwitches">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showGangSwitches">Show</button>
+                            <strong>Gang Switches</strong>
+            </td>
                       </tr>
                       
                       <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
                       <?php if($value['product_catogery'] == "Gang Switches"): //var_dump($value); ?>
-                      <tr class="odd">
+                        <tr class="GangSwitches">
                       
                       <?php foreach($supitem_details as $key=>$value1): //var_dump($value); ?>
                             <?php if($value['product_id'] == $value1['product_id']): //var_dump($value); ?>
@@ -200,14 +209,14 @@ if (!isset($_SESSION['id'])) {
 
                       <tr>
                       <td>
-                          <button id="hide">Hide</button>
-                          <button id="show">Show</button> 
-                          Other switches
-                      </td>
+          <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideOtherswitches">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showOtherswitches">Show</button>
+                          <strong>Other switches</strong>
+          </td>
                       </tr>
                       <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
                       <?php if($value['product_catogery'] == "Other switches"): //var_dump($value); ?>
-                      <tr class="odd">
+                        <tr class="Otherswitches">
                       
                       <?php foreach($supitem_details as $key=>$value1): //var_dump($value); ?>
                             <?php if($value['product_id'] == $value1['product_id']): //var_dump($value); ?>
@@ -231,15 +240,15 @@ if (!isset($_SESSION['id'])) {
                             <?php endforeach; ?>
                       
                       <tr>
-                        <td>
-                            <button id="hide">Hide</button>
-                            <button id="show">Show</button>
-                            Sockets
-                        </td>
+                      <td>
+            <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideSockets">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showSockets">Show</button>
+                            <strong>Sockets</strong>
+            </td>
                       </tr>
                       <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
                       <?php if($value['product_catogery'] == "Sockets"): //var_dump($value); ?>
-                      <tr class="odd">
+                        <tr class="Sockets">
                       
                         <?php foreach($supitem_details as $key=>$value1): //var_dump($value); ?>
                             <?php if($value['product_id'] == $value1['product_id']): //var_dump($value); ?>
@@ -264,15 +273,15 @@ if (!isset($_SESSION['id'])) {
                             <?php endforeach; ?>
 
                             <tr>
-                        <td>
-                        <button id="hide">Hide</button>
-                            <button id="show">Show</button>
-                            Switch Gears
-                        </td>
+                            <td>
+            <button type="button" class="btn btn-primary btn-sm btn-ripple" id="hideSwitchGears">Hide</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-ripple" id="showSwitchGears">Show</button>
+                            <strong>Switch Gears</strong>
+            </td>
                       </tr>
                       <?php foreach($product_details as $key=>$value): //var_dump($value); ?>
                       <?php if($value['product_catogery'] == "Switch Gears"): //var_dump($value); ?>
-                      <tr class="odd">
+                        <tr class="SwitchGears">
                       
                         <?php foreach($supitem_details as $key=>$value1): //var_dump($value); ?>
                             <?php if($value['product_id'] == $value1['product_id']): //var_dump($value); ?>
